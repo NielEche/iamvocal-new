@@ -1,0 +1,27 @@
+.member__name iframe {
+    height: 200px !important;
+}
+
+@media (min-width: 768px) {
+     .modal-dialog2 {
+    width: 1200px !important;
+    max-width:1200px !important;
+  }
+}
+
+
+.events img{
+object-fit: cover;
+width: 251px;
+height: 220px;
+}
+
+.speakers img{
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+  }
+
+.eventdetails{
+  height:90px;
+}
