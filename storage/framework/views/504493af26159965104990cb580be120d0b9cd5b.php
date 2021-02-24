@@ -10,21 +10,23 @@
         <div class="row">
             <?php $__currentLoopData = $eventss; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eve): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <?php if($loop->first): ?>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center">
-                <img class="w-100" src="<?php echo e(asset('uploads/events')); ?>/<?php echo e($eve->file_path1); ?>" alt="">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center pt-5">
+                <img class="w-100 lazyload--el lazyload in-view__child"
+                src="<?php echo e(asset('uploads/events')); ?>/<?php echo e($eve->file_path); ?>" alt="<?php echo e($eve['event_name']); ?>"
+                style="height:650px; object-fit:cover;">  
             </div>
             <?php endif; ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 
-    <div class="container bg-black pt-4 pb-3">
+    <div class="container bg-black pt-2 pb-3">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-black">
                 <?php $__currentLoopData = $eventss; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eve): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if($loop->first): ?>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-5 text-left text-white">
-                    <h4 class="fw-30"><?php echo e($eve['event_name']); ?></h4>
+                    <h3 class="fw-30"><?php echo e($eve['event_name']); ?></h3>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-4 text-white">
                     <p class="fw-20"><?php echo e($eve['about']); ?></p><br>
@@ -32,18 +34,6 @@
                 <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
-
-            <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 bg-black">
-                <div class="p-5 text-white">
-                    <h5>About TEDxPortHarcourt Salon </h5>
-                    <p>TEDxPortHarcourt introduces the Salon: amonthly speaker
-                        series which brings some of the city’s most inspired thinkers to share perspectives
-                        and spark conversation. A unique mixture of talks,workshops and interactive
-                        experiences. </p>
-                    <p>Salon events will bring our community ofinnovators and instigators together in informal evening forums to learn andengage on provocative themes each...</p>
-                    <button class="btn border border-white text-white p-2 fw-12">Read More</button>
-                </div>
-            </div>-->
         </div>
     </div>
 </section>
@@ -144,7 +134,7 @@
                                 $date = new Carbon;
                                 ?>
 
-                                <a href="<?php echo e("showSpeaker/".$speak->id); ?>"><button class="btn bg-blue text-white pt-2"
+                                <a href="<?php echo e("showEvent/".$speak->id); ?>"><button class="btn bg-blue text-white pt-2"
                                         type="button">
                                         View</button></a>
 

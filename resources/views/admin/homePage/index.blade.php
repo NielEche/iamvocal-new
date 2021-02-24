@@ -25,26 +25,16 @@ Admin Dashboard | Home
                             <h1 class="page-title" style="font-weight: bold !important;">HomePage Header</h1>
                             <!--<h5 class="page-subtitle"><span>Meet the dreamweavers.</span></h5>-->
                         </header>
-                        <div class="paragraph in-view in-view--in">
-                            <div class="row in-view__child in-view__child--fadein in-view__child--in">
-                                <div class="col-12 col-lg-6">
-                                    <!--<div class="dashed in-view__child in-view__child--in">
-	                          <p>We curate our speakers bearing in mind the African narrative. Our speakers are thinkers, builders and innovators that are Africans by origin, working on African problems or Africans in the diaspora making a difference in the societies they find themselves notwithstanding the fact that peoples of other descent can as well be invited to speak to our audience as far as they meet our rigorous screening process during curation.</p>
-	                        </div>-->
-                                </div>
-                            </div>
-                        </div>
                     </section>
   
                 </div>
             </div>
 
-
             <div class=" container-fluid  container-fixed-lg">
                 <div class="row">
                     @if ($homeHeader->count() > 0)
                     @foreach($homeHeader as $index => $slider)
-                    <div class="col-md-3 p-0">
+                    <div class="col-md-12 p-0">
                         <div class="card card-transparent m-0">
                             <div class="card-header ">
                                 <div class="card-title events">
@@ -85,35 +75,22 @@ Admin Dashboard | Home
                     @endforeach
                     @else
                     <div class="text-center">
-                        <a href="" class="btn blue-btn text-white" id="add_activity">
-                            ADD Partners
-                        </a>
+                        <h2 class="text-black ">
+                            NO DATA AVAILABLE , ADD
+                        </h2>
                     </div>
                     @endif
-
-
                 </div>
             </div>
-
 
             <div class=" container-fluid  container-fixed-lg">
                 <div class="card card-transparent">
                     <section style="padding-bottom:0px;"><br>
                         <header class="page-header">
-                            <h1 class="page-title" style="font-weight: bold !important;">What do we aim to create?</h1>
-                            <!--<h5 class="page-subtitle"><span>Meet the dreamweavers.</span></h5>-->
+                            <h1 class="page-title" style="font-weight: bold !important;">Homepage About</h1>
                         </header>
-                        <div class="paragraph in-view in-view--in">
-                            <div class="row in-view__child in-view__child--fadein in-view__child--in">
-                                <div class="col-12 col-lg-6">
-                                    <!--<div class="dashed in-view__child in-view__child--in">
-	                          <p>We curate our speakers bearing in mind the African narrative. Our speakers are thinkers, builders and innovators that are Africans by origin, working on African problems or Africans in the diaspora making a difference in the societies they find themselves notwithstanding the fact that peoples of other descent can as well be invited to speak to our audience as far as they meet our rigorous screening process during curation.</p>
-	                        </div>-->
-                                </div>
-                            </div>
-                        </div>
                     </section>
-                    <div class="card-header ">
+                    <!--<div class="card-header pt-0">
                         <div class="pull-right">
                             <div class="col-xs-12">
                                 <button data-toggle="modal" data-target="#addaim" id="btnStickUpSizeToggler"
@@ -122,8 +99,7 @@ Admin Dashboard | Home
                             </div>
 
                         </div>
-                        <div class="clearfix"></div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
 
@@ -131,7 +107,7 @@ Admin Dashboard | Home
                 <div class="row">
                     @if ($homeAbout->count() > 0)
                     @foreach($homeAbout as $index => $about)
-                    <div class="col-md-6 p-0">
+                    <div class="col-md-12 p-0">
                         <div class="card card-transparent m-0">
                             <div class="card-header pt-0">
                                 <div class="card-title events">
@@ -170,13 +146,77 @@ Admin Dashboard | Home
                     @endforeach
                     @else
                     <div class="text-center">
-                        <a href="" class="btn blue-btn text-white" id="add_activity">
-                            ADD Partners
-                        </a>
+                        <h2 class="text-black ">
+                            NO DATA AVAILABLE , ADD
+                        </h2>
                     </div>
                     @endif
 
                     
+                </div>
+            </div>
+
+            <div class=" container-fluid   container-fixed-lg">
+                <div class="card card-transparent">
+                    <section style="padding-bottom:0px;">
+                        <header class="page-header pt-2">
+                            <h1 class="page-title" style="font-weight: bold !important;">HomePage Images</h1>
+                            <!--<h5 class="page-subtitle"><span>Meet the dreamweavers.</span></h5>-->
+                        </header> 
+                    </section>
+                </div>
+            </div>
+
+            <div class=" container-fluid  container-fixed-lg">
+                <div class="row">
+                    @if ($homeImages->count() > 0)
+                    @foreach($homeImages as $index => $images)
+                    <div class="col-md-6 p-0">
+                        <div class="card card-transparent m-0">
+                            <div class="card-header ">
+                                <div class="card-title events">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="{{ asset('uploads/homepage/') }}/{{ $images->file_path }}"
+                                                    class="eventsimg w-100" alt="">
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-body ">
+                                <div style="display: flex;">
+                                    <div class="dropdown dropdown-default">
+                                        <button class="btn dropdown-toggle text-center" style="width:150px!important;"
+                                            type="button" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href={{"editHI/".$images['id']}}>
+                                                <button name="edit_event_btn"
+                                                    class="btn btn-success"> EDIT <i class="fa fa-pencil"></i></button>
+                                            </a>
+                                           <!-- <a class="dropdown-item" href={{"deleteheader/".$slider['id']}}>
+                                               <button type="submit" name="event_delete_btn"
+                                                        class="btn btn-danger">DELETE <i
+                                                            class="fa fa-trash-o"></i></button> 
+                                            </a>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    @else
+                    <div class="text-center">
+                        <h2 class="text-black ">
+                            NO DATA AVAILABLE , ADD
+                        </h2>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

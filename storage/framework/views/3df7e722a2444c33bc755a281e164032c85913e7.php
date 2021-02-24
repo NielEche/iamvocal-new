@@ -5,6 +5,7 @@ Home
 <?php $__env->startSection('content'); ?>
 <?php ( $home_headers = \App\Models\HomeHeader::all() ); ?>
 <?php ( $home_abouts = \App\Models\HomeAbout::all() ); ?>
+<?php ( $homeimages = \App\Models\HomeImages::all() ); ?>
 <?php ( $team = \App\Models\tedxphteams::orderBy('id', 'asc')->limit(5)->get() ); ?>
 
 <section class="section section--singular2 video bg-black">
@@ -12,7 +13,6 @@ Home
         <div class="carousel-inner">
             <div class="carousel-item active ">
                 <?php $__currentLoopData = $home_headers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
                 <img src="<?php echo e(asset('uploads/homepage')); ?>/<?php echo e($data->file_path); ?>" class="d-block w-100" alt="Image">
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
@@ -158,7 +158,7 @@ Home
                                 better by improving the quality of lives and providing basic needs for the less
                                 privileged and the forgotten in our society. Join others and make a commitment today.
                             </p>
-                            <a href="<?php echo e(route('careers')); ?>#donations"
+                            <a href="<?php echo e(route('donate')); ?>#donations"
                                 class="text-decoration-none d-flex justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff"
                                     class="bi bi-arrow-up-right-circle" viewBox="0 0 16 16">
@@ -178,12 +178,11 @@ Home
 <section class="section bg-black">
     <div class="container-fluid">
         <div class="row">
+            <?php $__currentLoopData = $homeimages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 p-0">
-                <img class="homeimg" src="<?php echo e(asset('files/media/slide.jpg')); ?>" alt="">
+                <img style="object-fit:cover;" class="homeimg" src="<?php echo e(asset('uploads/homepage')); ?>/<?php echo e($data->file_path); ?>" alt="<?php echo e($data->caption); ?>">
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 p-0">
-                <img class="homeimg" src="<?php echo e(asset('files/media/slide1.jpg')); ?>" alt="">
-            </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 </section>
@@ -265,33 +264,6 @@ Home
     </div>
 </section>-->
 
-
-<!--<section class="section-block  bg-black">
-    <div class="container abtTedxph py-5">
-        <div class="row">
-            <div class="col-12">
-                <h5 class="text-white py-4">Join our mailing list</h5>
-            </div>
-            <div class="col-lg-12 pb-4">
-                <div class="signup-form-container">
-                    <form class="signup-form" action="#" novalidate="">
-                        <div class="row">
-                            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8 py-1">
-                                <div class="field-wrapper">
-                                    <input type="email" name="email" class="py-3" placeholder="Email address*"
-                                        tabindex="2" required="">
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 py-1">
-                                <input type="submit" value="Subscribe Now" class="btn bg-red rounded-0 py-3 ">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>-->
 
 <?php $__env->stopSection(); ?>
 

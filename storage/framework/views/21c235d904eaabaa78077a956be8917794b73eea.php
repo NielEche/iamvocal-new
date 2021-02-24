@@ -4,6 +4,7 @@ Media
 
 <?php $__env->startSection('content'); ?>
 <?php ( $media = \App\Models\Media::all() ); ?>
+<?php ( $news = \App\Models\News::all() ); ?>
 <!--<section class=" bg-black py-5">
     <div class="container">
         <div class="row">
@@ -32,12 +33,12 @@ Media
 
 </style>
 
-<section class="py-5">
+<section class="pt-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="team-members py-4">
-                    <div class="in-view in-view--in pt-5 pb-4">
+                <div class="team-members pt-5">
+                    <div class="in-view in-view--in py-4">
                         <h1 class="page-title page-title2 PageActive">Media Gallery</h1>
                     </div>
                 </div>
@@ -46,9 +47,9 @@ Media
             <?php echo $__env->make('partials.modals.videos', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="member">
-                    <div class="member__image poster poster--square in-view in-view--in">
+                    <div class=" poster poster--square ">
                         <a href="#" data-toggle="modal" data-target="#videosDetails<?php echo e($data->id); ?>">
-                            <figure>
+                            <figure class="m-0">
                                 <img class="lazyload--el in-view__child lazyloaded in-view__child--in" src="<?php echo e(asset('uploads/eventgallery')); ?>/<?php echo e($data->file_path); ?>" 
                                     alt="" width="445" height="445">
                                 <div class="poster--cover in-view in-view__child in-view--in in-view__child--in">
@@ -67,6 +68,45 @@ Media
                             <?php echo e($data->event_name); ?>
 
                         </p>
+                    </div>
+                </div>
+             
+            </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</section>
+
+<section class="bg-black pb-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="team-members pt-5">
+                    <div class="in-view in-view--in py-4">
+                        <h1 class="page-title page-title2 text-white">News</h1>
+                    </div>
+                </div>
+            </div>
+            <?php $__currentLoopData = $news; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $news): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php echo $__env->make('partials.modals.videos', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 py-2">
+                <div class="member">
+                    <div class="poster poster--square ">
+                        <a href=<?php echo e("allnews/".$news['id']); ?>>
+                            <figure class="m-0">
+                                <img class="lazyload--el in-view__child lazyloaded in-view__child--in" src="<?php echo e(asset('uploads/news')); ?>/<?php echo e($news->file_path); ?>" 
+                                    alt="" width="445" height="445">
+                                <div class="poster--cover in-view in-view__child in-view--in in-view__child--in">
+                                </div>
+                            </figure>
+                        </a>
+                    </div>
+                    <div class="member__info in-view in-view--in">
+                        <h6 style="font-size:15px !important;"
+                            class="text-white member__name member__name1 in-view__child in-view__child--fadein in-view__child--in">
+                            <?php echo e($news->title); ?>
+
+                        </h6>
                     </div>
                 </div>
              

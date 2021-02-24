@@ -6,55 +6,6 @@ Admin Dashboard | Events
 <div class="page-container ">
     <div class="page-content-wrapper ">
         <div class="content ">
-            <div class="modal fade slide-up disable-scroll" id="" tabindex="-1" role="dialog" aria-hidden="false">
-                <div class="modal-dialog ">
-                    <div class="modal-content-wrapper">
-                        <div class="modal-content">
-                            <div class="modal-header clearfix text-left">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
-                                        class="pg-close fs-14"></i>
-                                </button>
-                                <h5>Add Event <span class="semi-bold">Programme</span></h5>
-                                <p class="p-b-10">Add New Or Update already existing Event Programme</p>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group-attached">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group form-group-default">
-
-                                                <embed src="upload/" width="100%" type="application/pdf">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <form action="code.php" method="POST" enctype="multipart/form-data" role="form">
-                                    <div class="form-group-attached">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group form-group-default">
-                                                    <label>Event Programme or Brochure</label><br>
-                                                    <input type="file" id="event_file" name="event_file"
-                                                        class="form-control" required>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 m-t-10 sm-m-t-10">
-                                            <input type="hidden" name="more_id" value="">
-                                            <button type="submit" name="event_more_save"
-                                                class="btn btn-primary btn-block m-t-5">Save</button>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <?php if(session()->has('message')): ?>
             <div class="alert alert-success w-50" role="alert">
@@ -68,7 +19,7 @@ Admin Dashboard | Events
                 <div class="card card-transparent">
                     <section style="padding-bottom:0px;">
                         <header class="page-header pt-2">
-                            <h1 class="page-title" style="font-weight: bold !important;">Events</h1>
+                            <h1 class="page-title" style="font-weight: bold !important;">Programs & Initiatives</h1>
                             <!--<h5 class="page-subtitle"><span>Meet the dreamweavers.</span></h5>-->
                         </header>
                         <div class="paragraph in-view in-view--in">
@@ -82,7 +33,7 @@ Admin Dashboard | Events
                         </div>
                     </section>
 
-                    <div class="card-header ">
+                    <div class="card-header pt-0">
                         <div class="pull-right">
                             <div class="col-xs-12">
                                 <button data-toggle="modal" data-target="#addevent" id="btnStickUpSizeToggler"
@@ -115,7 +66,7 @@ Admin Dashboard | Events
                                                     class="eventsimg w-100" alt="">
                                             </div>
                                             <div class="carousel-item">
-                                                <img src="<?php echo e(asset('uploads/events/')); ?>/<?php echo e($event->file_path1); ?>"
+                                                <img src="<?php echo e(asset('uploads/events/')); ?>/<?php echo e($event->file_path); ?>"
                                                     class="eventsimg w-100" alt="">
                                             </div>
                                         </div>
@@ -123,15 +74,13 @@ Admin Dashboard | Events
                                 </div>
                             </div>
                             
-                            <div class="card-body ">
-                                <div class="eventdetails">
-                                    <h5 class="m-0"><?php echo e($event->event_theme); ?></h5>
-                                    <h6 class="m-0"><?php echo e($event->event_name); ?></h6>
-                                    <p class="m-0"><?php echo e($event->date); ?></p>
+                            <div class="card-body">
+                                <div class="py-2">
+                                    <h5 class="m-0"><?php echo e($event->event_name); ?></h5>
                                 </div>
 
                                 <div style="display: flex;">
-                                    <div class="dropdown dropdown-default">
+                                    <div class="dropdown dropdown-default ">
                                         <button class="btn dropdown-toggle text-center" style="width:150px!important;"
                                             type="button" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
@@ -164,9 +113,9 @@ Admin Dashboard | Events
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php else: ?>
                     <div class="text-center">
-                        <a href="" class="btn blue-btn text-white" id="add_activity">
-                            ADD EVENT
-                        </a>
+                        <h4 class="text-black ">
+                            NO PROGRAM AVAILABLE , ADD PROGRAM !!
+                        </h4>
                     </div>
                     <?php endif; ?>
                 </div>

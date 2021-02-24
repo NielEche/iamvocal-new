@@ -47,7 +47,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{ route('careers') }}#donations">
+                                                        <a href="{{ route('donate') }}#donations">
                                                             <span>Donate</span>
                                                         </a>
                                                     </li>
@@ -59,7 +59,7 @@
                                                     @foreach($events as $key => $data)
                                                     <li>
                                                         <a href="{{ route('subevents', [ $data->id]) }}">
-                                                            <span>{{ $data->event_theme}}</span>
+                                                            <span>{{ $data->event_name}}</span>
                                                         </a>
                                                     </li>
                                                     @endforeach

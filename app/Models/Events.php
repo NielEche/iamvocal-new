@@ -10,13 +10,8 @@ class Events extends Model
     use HasFactory;
     protected $fillable = [
         'event_name',
-        'event_theme',
-        'date',
-        'time',
-        'venue',
         'about',
-        'file_path',
-        'file_path1'
+        'file_path'
     ];
 
     protected $table = 'events';

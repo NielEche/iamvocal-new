@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeEventsAboutColumnType extends Migration
+class CreateHomeImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class ChangeEventsAboutColumnType extends Migration
      */
     public function up()
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->string('about', 5000)->change();
+        Schema::create('home_images', function (Blueprint $table) {
+            $table->id();
+            $table->string('file_path')->nullable();
+            $table->string('caption');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class ChangeEventsAboutColumnType extends Migration
      */
     public function down()
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('about');
-        });
+        Schema::dropIfExists('home_images');
     }
 }

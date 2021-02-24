@@ -26,59 +26,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>Event Image 2</label>
-                                <input type="file" id="file_path1" name="file_path1" accept="image/*"
-                                    class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
                                 <label>Event Name</label>
                                 <input type="text" name="event_name" placeholder="event name"
                                     class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Event Theme</label>
-                                <input type="text" name="event_theme" placeholder="event theme"
-                                    class="form-control" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Event Date</label>
-                                <input type="date" name="date" placeholder="event date" class="form-control"
-                                    required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Event Time</label>
-                                <input type="time" name="time" placeholder="event time" class="form-control"
-                                    required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Event Venue</label>
-                                <input type="text" name="venue" placeholder="event venue" class="form-control"
-                                    required>
                             </div>
                         </div>
                     </div>

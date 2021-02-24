@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\tedxphteams;
+use App\Models\AboutUs;
 use Illuminate\Http\Request;
 
 class TeamsController extends Controller
@@ -15,7 +16,8 @@ class TeamsController extends Controller
     public function index()
     {
         $tedxphteams = tedxphteams::all();
-        return view('admin.team.index', compact(['tedxphteams']));
+        $aboutus = AboutUs::all();
+        return view('admin.team.index', compact(['tedxphteams' , 'aboutus']));
     }
 
     /**
@@ -97,6 +99,12 @@ class TeamsController extends Controller
         return view('admin.team.edit', ['teams'=>$tedxphteams]); 
     }
 
+    public function showAboutus($id)
+    {
+        $aboutus = AboutUs::find($id);
+        return view('admin.team.editabout', ['aboutus'=>$aboutus]); 
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -154,9 +162,36 @@ class TeamsController extends Controller
             ];
             return response()->json($response, 422);
         }
-
-   
    }
+
+   public function updateAU(Request $request)
+   {
+       
+       try {
+
+           $aboutus = AboutUs::find($request->id);
+
+           $aboutus->update([
+               'header' => $request['header'],
+               'details' => $request['details'],
+           ]);
+
+           $aboutus->save();
+   
+           return redirect('aboutevent')->with('message', 'About Us Updated  Succesfully!');
+          
+
+       } catch (\Throwable $th) {
+  
+           throw $th;
+           $response = [
+             'success' => false,
+             'message' => "OOPS! Something fucking wennt wrong"
+           ];
+           return response()->json($response, 422);
+       }  
+  }
+
 
     /**
      * Remove the specified resource from storage.

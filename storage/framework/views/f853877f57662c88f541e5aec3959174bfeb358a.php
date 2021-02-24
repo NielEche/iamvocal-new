@@ -65,32 +65,6 @@ Partners
     </div>
 </section>
 
-<section class="section section--singular parallax2 bg-blue py-5">
-    <div class="container py-4">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="team-members">
-                    <div class="row ">
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-                            <h1 style="margin-bottom:0px;" class="text-white" id="donations">Donate Us Today !!</h1>
-                            <p class="text-white">Let’s help make our communities better by improving the quality of
-                                lives and providing basic needs for the less privileged and the forgotten in our
-                                 society. Join others and make a commitment today.</p>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"> 
-                            <p class="d-flex justify-content-center pt-5">
-                                <button type="submit" class="btn text-white bg-blue btn-submit"
-                                    style="border-radius: 0px !important;">Donate</button>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('footer'); ?>
