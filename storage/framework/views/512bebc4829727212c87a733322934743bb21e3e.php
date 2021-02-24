@@ -19,7 +19,7 @@ Admin Dashboard | Partners
                 <div class="card card-transparent">
                     <section style="padding-bottom:0px;">
                         <header class="page-header pt-2">
-                            <h1 class="page-title" style="font-weight: bold !important;">Partners</h1>
+                            <h1 class="page-title" style="font-weight: bold !important;">News</h1>
                             <!--<h5 class="page-subtitle"><span>Meet the dreamweavers.</span></h5>-->
                         </header>
                         <div class="paragraph in-view in-view--in">
@@ -36,8 +36,8 @@ Admin Dashboard | Partners
                     <div class="card-header ">
                         <div class="pull-right">
                             <div class="col-xs-12">
-                                <button data-toggle="modal" data-target="#addpartners" id="btnStickUpSizeToggler"
-                                    class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add Partners
+                                <button data-toggle="modal" data-target="#addnews" id="btnStickUpSizeToggler"
+                                    class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add News
                                 </button>
                             </div>
 

@@ -54,6 +54,11 @@ class PagesController extends Controller
         return view('pages.media'); 
     }
 
+    public function donate()
+    {
+        return view('pages.donate'); 
+    }
+
     public function em()
     {
         return view('pages.em'); 
@@ -69,71 +74,6 @@ class PagesController extends Controller
         return view('pages.fc'); 
     }
 
-    public function reframe()
-    {
-        return view('pages.reframe'); 
-    }
-
-
-    public function andrew()
-    {
-        return view('pages.speakers.andrew'); 
-    }
-
-    public function itoro()
-    {
-        return view('pages.speakers.itoro'); 
-    }
-
-    public function olu()
-    {
-        return view('pages.speakers.olu'); 
-    }
-
-    public function ifeanyi()
-    {
-        return view('pages.speakers.ifeanyi'); 
-    }
-
-    public function nnamdi()
-    {
-        return view('pages.speakers.nnamdi'); 
-    }
-
-    public function mina()
-    {
-        return view('pages.speakers.mina'); 
-    }
-
-    public function sher()
-    {
-        return view('pages.speakers.sher'); 
-    }
-
-    public function ipalibo()
-    {
-        return view('pages.speakers.ipalibo'); 
-    }
-
-    public function celestina()
-    {
-        return view('pages.speakers.celestina'); 
-    }
-
-    public function kblack()
-    {
-        return view('pages.speakers.kblack'); 
-    }
-
-    public function kotrell()
-    {
-        return view('pages.speakers.kotrell'); 
-    }
-
-    public function amanda()
-    {
-        return view('pages.speakers.amanda'); 
-    }
 
 
     /**

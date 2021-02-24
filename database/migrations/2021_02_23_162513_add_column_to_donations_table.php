@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEmbedColumnSpeakersTable extends Migration
+class AddColumnToDonationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddEmbedColumnSpeakersTable extends Migration
      */
     public function up()
     {
-        Schema::table('speakers', function (Blueprint $table) {
-            $table->string('embed');
+        Schema::table('donations', function (Blueprint $table) {
+            $table->string('header');
+            $table->string('location');
         });
     }
 
@@ -25,8 +26,8 @@ class AddEmbedColumnSpeakersTable extends Migration
      */
     public function down()
     {
-        Schema::table('speakers', function (Blueprint $table) {
-            $table->dropColumn('embed');
+        Schema::table('donations', function (Blueprint $table) {
+            //
         });
     }
 }

@@ -12,6 +12,8 @@ use App\Http\Controllers\SpeakersController;
 use App\Http\Controllers\homeHeaderController;
 use App\Http\Controllers\HomeAboutController;
 use App\Http\Controllers\CareersController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\DonationsController;
 use App\Models\User;
 
 /*
@@ -34,15 +36,15 @@ Route::group([
     Route::resources([
         'liquidbox' => AdminController::class,
         'events' => EventsController::class,   
-        'eventpartners' => PartnersController::class,    
+        'news' => NewsController::class,    
         'aboutevent' => TeamsController::class, 
         'eventgallery' => MediaController::class,
         'editspeaker' => SpeakersController::class,
         'homeHeader' => HomeHeaderController::class,
-        'career' => CareersController::class,    
+        'career' => CareersController::class, 
+        'donations' => DonationsController::class,    
         ]);
 // Route::resources('eventspage', EventsController::class);
-
 });
 
 
@@ -52,12 +54,12 @@ Route::redirect('/dashboard', '/liquidbox');
 
 Route::get('edit/{id}', [EventsController::class, 'showData']);
 Route::get('allspeakers/{id}', [SpeakersController::class, 'showSpeaker']);
-Route::get('eventspeakers/{id}', [SpeakersController::class, 'showall'])->name('subevents');
+Route::get('ourevents/{id}', [SpeakersController::class, 'showall'])->name('subevents');
 
 Route::get('viewCareer/{id}', [CareersController::class, 'showall']);
 
-Route::get('eventspeakers/showSpeaker/{id}', [SpeakersController::class, 'displaySpeakers']);
-Route::get('eventspeakers/showSpeaker/{id}', [SpeakersController::class, 'displayNow'])->name('allevents');
+Route::get('ourevents/showEvent/{id}', [SpeakersController::class, 'displaySpeakers']);
+Route::get('ourevents/showEvent/{id}', [SpeakersController::class, 'displayNow'])->name('allevents');
 Route::get('showSpeakerss/{id}', [SpeakersController::class, 'displayNoww']);
 
 Route::post('editevent', [EventsController::class, 'update']);
@@ -71,13 +73,25 @@ Route::get('editCareer/{id}', [CareersController::class, 'showData']);
 Route::post('editC', [CareersController::class, 'update']);
 Route::get('deleteCareer/{id}',[CareersController::class, 'destroy']);
 
+Route::get('editDonate/{id}', [DonationsController::class, 'showData']);
+Route::post('editDonate', [DonationsController::class, 'update']);
+Route::get('deleteDonate/{id}',[DonationsController::class, 'destroy']);
+
 Route::get('editT/{id}', [TeamsController::class, 'showData']);
 Route::post('editTeam', [TeamsController::class, 'update']);
 Route::get('deleteteam/{id}',[TeamsController::class, 'destroy']);
 
+Route::get('editAbout/{id}', [TeamsController::class, 'showAboutus']);
+Route::post('editAboutUs', [TeamsController::class, 'updateAU']);
+
 Route::get('editM/{id}', [MediaController::class, 'showData']);
 Route::post('editMedia', [MediaController::class, 'update']);
 Route::get('deletemedia/{id}',[MediaController::class, 'destroy']);
+
+Route::get('editn/{id}', [NewsController::class, 'showData']);
+Route::get('allnews/{id}', [NewsController::class, 'show']);
+Route::post('editnews', [NewsController::class, 'update']);
+Route::get('deletenews/{id}',[NewsController::class, 'destroy']);
 
 Route::get('allspeakers/editS/{id}', [SpeakersController::class, 'showData']);
 Route::post('editSpeaker', [SpeakersController::class, 'update']);
@@ -89,9 +103,14 @@ Route::post('editHeader', [HomeHeaderController::class, 'update']);
 Route::post('editHAbout', [HomeHeaderController::class, 'updateH']);
 Route::get('deleteheader/{id}',[HomeHeaderController::class, 'destroy']);
 
+
+Route::get('editHI/{id}', [HomeHeaderController::class, 'showImages']);
+Route::post('editHImages', [HomeHeaderController::class, 'updateImages']);
+
 Route::get('/', [PagesController::class, 'index'])->name('index');
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 Route::get('/careers', [PagesController::class, 'partners'])->name('careers');
+Route::get('/donate', [PagesController::class, 'donate'])->name('donate');
 Route::get('/mainevents', [PagesController::class, 'events'])->name('events');
 Route::get('/event-details', [PagesController::class, 'eventdetails'])->name('event-details');
 Route::get('/speaker', [PagesController::class, 'speaker'])->name('speaker');
@@ -99,7 +118,7 @@ Route::get('/media', [PagesController::class, 'media'])->name('media');
 Route::get('/em', [PagesController::class, 'em'])->name('em');
 Route::get('/sots', [PagesController::class, 'sots'])->name('sots');
 Route::get('/fc', [PagesController::class, 'fc'])->name('fc');
-Route::get('/reframe', [PagesController::class, 'reframe'])->name('reframe');
+
 
 
 

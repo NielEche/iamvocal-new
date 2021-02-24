@@ -47,7 +47,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="<?php echo e(route('careers')); ?>#donations">
+                                                        <a href="<?php echo e(route('donate')); ?>#donations">
                                                             <span>Donate</span>
                                                         </a>
                                                     </li>
@@ -59,7 +59,7 @@
                                                     <?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <li>
                                                         <a href="<?php echo e(route('subevents', [ $data->id])); ?>">
-                                                            <span><?php echo e($data->event_theme); ?></span>
+                                                            <span><?php echo e($data->event_name); ?></span>
                                                         </a>
                                                     </li>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

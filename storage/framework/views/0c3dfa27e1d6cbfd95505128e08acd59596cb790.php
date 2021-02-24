@@ -11,14 +11,14 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-black">
                 <?php $__currentLoopData = $careers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if($loop->first): ?>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-5 text-left text-white">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-5 text-left text-white px-0">
                     <h4 class="fw-30"><?php echo e($careers['position']); ?></h4>
                     <h5 class="fw-20"><?php echo e($careers['location']); ?></h4>
                 </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-2 text-white">
-                    <p class="fw-20"><?php echo $careers['about']; ?></p><br>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-2 text-white px-0">
+                    <p class="fw-20"><?php echo $careers['about']; ?></p>
                 </div>
-                <div class="speaker-neat__copy in-view ">
+                <div class="speaker-neat__copy in-view pb-4">
                     <a target="_blank" href="<?php echo e($careers->apply); ?>"><button class="btn bg-blue text-white "
                             type="button">
                             Apply</button></a>

@@ -119,19 +119,19 @@ class SpeakersController extends Controller
     public function displaySpeakers($id)
     {
         $speakers = Speakers::find($id);
-        return view('pages.speakers.speakers', ['speakers'=>$speakers]); 
+        return view('pages.speakers.sub-events', ['speakers'=>$speakers]); 
     }
 
     public function displaynow($id)
     {
         $speakers = Speakers::find($id);
-        return view('pages.speakers.speakers', ['speakers'=>$speakers]); 
+        return view('pages.speakers.sub-events', ['speakers'=>$speakers]); 
     }
 
     public function displaynoww($id)
     {
         $speakers = Speakers::find($id);
-        return view('pages.speakers.speakers', ['speakers'=>$speakers]); 
+        return view('pages.speakers.sub-events', ['speakers'=>$speakers]); 
     }
 
 

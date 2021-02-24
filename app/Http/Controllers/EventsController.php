@@ -41,10 +41,6 @@ class EventsController extends Controller
             $events = new Events();
 
             $events->event_name = $request->event_name;
-            $events->event_theme = $request->event_theme;
-            $events->date = $request->date;
-            $events->time = $request->time;
-            $events->venue = $request->venue;
             $events->about = $request->about;
 
             if ($request->hasfile('file_path')) {
@@ -58,21 +54,9 @@ class EventsController extends Controller
                 $events->file_path = '';
             }
 
-
-            if ($request->hasfile('file_path1')) {
-                $file = $request->file('file_path1');
-                $extension = $file->getClientOriginalExtension();
-                $filename = time() . '.' . $extension;
-                $file->move('uploads/events/', $filename);
-                $events->file_path1 = $filename;
-            } else {
-                return $request;
-                $events->file_path1 = '';
-            }
-
             $events->save();
      
-            return redirect('events')->with('message', 'Event Added Succesfully!');
+            return redirect('events')->with('message', 'Program Added Succesfully!');
             
 
         } catch (\Throwable $th) {
@@ -142,23 +126,9 @@ class EventsController extends Controller
                 $events->save();
             }
 
-            if ($request->hasfile('file_path1')) {
-                $file = $request->file('file_path1');
-                $extension = $file->getClientOriginalExtension();
-                $file_path1 = time() . '.' . $extension;
-                $file->move('uploads/events/', $file_path1);
-                $events->file_path1 = $file_path1;
-            } else {
-                $events->save();
-            }        
         
-          
              $events->update([
                  'event_name' => $request['event_name'],
-                 'event_theme' => $request['event_theme'],
-                 'date' => $request['date'],
-                 'time' => $request['time'],
-                 'venue' => $request['venue'],
                  'about' => $request['about'],
              ]);
 

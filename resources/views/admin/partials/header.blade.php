@@ -123,14 +123,12 @@
             <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <span class="thumbnail-wrapper d32 circular inline">
-                    <img src="{{ asset('files/favicons/favicon-red.png') }}" alt="">
+                    <img src="{{ asset('files/favicons/iamvfavicon.ico') }}" alt="">
                 </span>
             </button>
 
 
             <div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
-                
-               
                      <form method="POST" class="w-100" action="{{ route('logout') }}">
                     @csrf
                     <x-jet-dropdown-link class="btn btn-primary clearfix bg-master-lighter dropdown-item text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -145,9 +143,6 @@
         <!--<a href="#" class="header-icon pg pg-alt_menu btn-link m-l-10 sm-no-margin d-inline-block" data-toggle="quickview" data-toggle-element="#quickview"></a>-->
     </div>
 </div>
-
-
-
 
 <nav class="page-sidebar" data-pages="sidebar">
     <div class="sidebar-overlay-slide from-top" id="appMenu">
@@ -222,13 +217,13 @@
                         <span class="icon-thumbnail">CP</span>
                     </li>
                     <li class="">
-                        <a href="" style="color: #fff !important; font-weight: bold !important;">Donation Page</a>
+                        <a href="{{ route('donations.index') }}" style="color: #fff !important; font-weight: bold !important;">Donation Page</a>
                         <span class="icon-thumbnail">DP</span>
                     </li>
                     <li class="">
-                        <a href="{{ route('eventpartners.index') }}" style="color: #fff !important; font-weight: bold !important;">Partners
+                        <a href="{{ route('news.index') }}" style="color: #fff !important; font-weight: bold !important;">News
                         </a>
-                        <span class="icon-thumbnail">PP</span>
+                        <span class="icon-thumbnail">NP</span>
                     </li>
                     <!--<li class="">
                         <a href="speakers.php" style="color: #fff !important; font-weight: bold !important;">Speaker Page</a>

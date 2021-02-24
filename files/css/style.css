@@ -2974,9 +2974,7 @@ body {
   padding-top: 70px;
 }
 
-#team{
-  margin-top: -5%;
-}
+
 
 .reveal--secondary::before {
 
@@ -2984,11 +2982,6 @@ body {
 
 }
 
-@media (max-width: 390px){
-    #team{
-      margin-top:-45%;
-    }
-  }
 
 .indent {
   margin-left: 20px;

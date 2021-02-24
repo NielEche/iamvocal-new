@@ -1,22 +1,22 @@
-<div class="modal fade stick-up" id="addpartners" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade stick-up" id="addnews" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header clearfix text-left">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
                         class="pg-close fs-14"></i>
                 </button>
-                <h5>Add <span class="semi-bold">Partners Details</span></h5>
+                <h5>Add <span class="semi-bold">News</span></h5>
             </div>
             <div class="modal-body">
-                <form action="<?php echo e(route('eventpartners.store')); ?>" method="POST" enctype="multipart/form-data"
-                    name="partners" id="partners">
+                <form action="<?php echo e(route('news.store')); ?>" method="POST" enctype="multipart/form-data"
+                    name="news" id="news">
                     <?php echo csrf_field(); ?>
                     <?php echo method_field('POST'); ?>
 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>Partner Image</label>
+                                <label>News Header</label>
                                 <input type="file" id="file_path" name="file_path" accept="image/*"
                                     class="form-control" required>
                             </div>
@@ -26,8 +26,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>Partner Name</label>
-                                <input type="text" name="name" placeholder="name"
+                                <label>Title</label>
+                                <input type="text" name="title" placeholder="title"
                                     class="form-control" required>
                             </div>
                         </div>
@@ -35,17 +35,24 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group form-group-default ">
-                                <label>Partner Type</label>
-                                <select class="form-control" name="type">
-                                    <option value="principal">Principal Partners</option>
-                                    <option value="sponsors">Sponsors</option>
-                                    <option value="hospitality">Hospitality Partners</option>
-                                </select>
-                                
+                            <div class="form-group form-group-default">
+                                <label>Date</label>
+                                <input type="date" name="date" placeholder="date"
+                                    class="form-control" required>
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group ">
+                                <label>News details</label>
+                                <textarea rows="10" type="text" name="details" placeholder="News Details"
+                                    class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="row">
                         <div class="col-md-8">

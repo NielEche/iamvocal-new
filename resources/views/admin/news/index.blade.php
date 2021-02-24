@@ -21,7 +21,7 @@ Admin Dashboard | Partners
                 <div class="card card-transparent">
                     <section style="padding-bottom:0px;">
                         <header class="page-header pt-2">
-                            <h1 class="page-title" style="font-weight: bold !important;">Partners</h1>
+                            <h1 class="page-title" style="font-weight: bold !important;">News</h1>
                             <!--<h5 class="page-subtitle"><span>Meet the dreamweavers.</span></h5>-->
                         </header>
                         <div class="paragraph in-view in-view--in">
@@ -38,8 +38,8 @@ Admin Dashboard | Partners
                     <div class="card-header ">
                         <div class="pull-right">
                             <div class="col-xs-12">
-                                <button data-toggle="modal" data-target="#addpartners" id="btnStickUpSizeToggler"
-                                    class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add Partners
+                                <button data-toggle="modal" data-target="#addnews" id="btnStickUpSizeToggler"
+                                    class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add News
                                 </button>
                             </div>
 
@@ -54,8 +54,8 @@ Admin Dashboard | Partners
 
             <div class=" container-fluid  container-fixed-lg">
                 <div class="row">
-                    @if ($partners->count() > 0)
-                    @foreach($partners as $index => $partner)
+                    @if ($news->count() > 0)
+                    @foreach($news as $index => $news)
                     <div class="col-md-3 p-0">
                         <div class="card card-transparent m-0">
                             <div class="card-header ">
@@ -63,7 +63,7 @@ Admin Dashboard | Partners
 
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
-                                                <img src="{{ asset('uploads/partners/') }}/{{ $partner->file_path }}"
+                                                <img src="{{ asset('uploads/news/') }}/{{ $news->file_path }}"
                                                     class="eventsimg w-100" alt="">
                                             </div>
                                         </div>
@@ -72,8 +72,8 @@ Admin Dashboard | Partners
                             
                             <div class="card-body ">
                                 <div class="eventdetails">
-                                    <h5 class="m-0">{{ $partner->name }}</h5>
-                                    <p class="m-0">{{ $partner->type }}</p>
+                                    <h5 class="m-0">{{ $news->title }}</h5>
+                                    <p class="m-0">{{ $news->date }}</p>
                                 </div>
 
                                 <div style="display: flex;">
@@ -84,11 +84,11 @@ Admin Dashboard | Partners
                                             Action
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href={{"editp/".$partner['id']}}>
+                                            <a class="dropdown-item" href={{"editn/".$news['id']}}>
                                                 <button name="edit_event_btn"
                                                     class="btn btn-success"> EDIT <i class="fa fa-pencil"></i></button>
                                             </a>
-                                            <a class="dropdown-item" href={{"deletepartner/".$partner['id']}}>
+                                            <a class="dropdown-item" href={{"deletenews/".$news['id']}}>
                                                <button type="submit" name="event_delete_btn"
                                                         class="btn btn-danger">DELETE <i
                                                             class="fa fa-trash-o"></i></button> 
@@ -103,9 +103,9 @@ Admin Dashboard | Partners
                     @endforeach
                     @else
                     <div class="text-center">
-                        <a href="" class="btn blue-btn text-white" id="add_activity">
-                            ADD Partners
-                        </a>
+                        <h2 class="text-black ">
+                            NO NEWS AVAILABLE ADD NEWS
+                        </h2>
                     </div>
                     @endif
                 </div>

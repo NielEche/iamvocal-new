@@ -7,12 +7,12 @@ Speaker Details
 @section('content')
 
 <section class="section section--singular">
-    <div class="container ">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-2">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 px-0 py-2">
                             <img class="w-100 lazyload--el lazyload in-view__child"
                                 src="{{ asset('uploads/speakers') }}/{{ $speakers->file_path }}"
                                 alt="{{$speakers['name']}}" style="height:400px; object-fit:cover;">
@@ -20,46 +20,35 @@ Speaker Details
                     </div>
 
                     <div class="mypanel pb-3">
-
-                        <ul style="padding:0px !important;">
-                            <li style="list-style:none;">
-                                <div class="board board--left">
-
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 px-0">
+                                <div class="board__copy in-view">
+                                    <h2 style="text-transform: uppercase;"
+                                        class="in-view__child in-view__child--fadein text-black">
+                                        {{$speakers['name']}}
+                                    </h2>
+                                    <h6 style="text-transform: uppercase;"
+                                        class="in-view__child in-view__child--fadein text-black">
+                                        Venue: {{$speakers['venue']}}
+                                    </h6>
+                                    <h6 style="text-transform: uppercase;"
+                                        class="in-view__child in-view__child--fadein text-black">
+                                        Date: {{ \Carbon\Carbon::parse($speakers->date)->format('M d Y')}}
+                                    </h6>
+                                    <h6 style="text-transform: uppercase;"
+                                        class="in-view__child in-view__child--fadein text-black">
+                                        Time: {{$speakers['time']}}
+                                    </h6>
+                                    <p style="text-transform: uppercase;"
+                                        class="sub-head dashed in-view__child in-view__child--fadein text-black">
+                                        {{$speakers['occupation']}}
+                                    </p>
+                                    <p class="ml-0 indent in-view__child in-view__child--fadein text-black">
+                                        {{$speakers['bio']}}
+                                    </p>
                                 </div>
-                            </li>
-                            <li style="list-style:none;">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                        <div class="board__copy in-view">
-                                            <h2 style="text-transform: uppercase;"
-                                                class="in-view__child in-view__child--fadein text-black">
-                                                {{$speakers['name']}}
-                                            </h2>
-                                            <h6 style="text-transform: uppercase;"
-                                                class="in-view__child in-view__child--fadein text-black">
-                                                Venue: {{$speakers['venue']}}
-                                            </h6>
-                                            <h6 style="text-transform: uppercase;"
-                                                class="in-view__child in-view__child--fadein text-black">
-                                                Date: {{ \Carbon\Carbon::parse($speakers->date)->format('M d Y')}}
-                                            </h6>
-                                            <h6 style="text-transform: uppercase;"
-                                                class="in-view__child in-view__child--fadein text-black">
-                                                Time: {{$speakers['time']}}
-                                            </h6>
-                                            <p style="text-transform: uppercase;"
-                                                class="sub-head dashed in-view__child in-view__child--fadein text-black">
-                                                {{$speakers['occupation']}}
-                                            </p>
-                                            <p style="margin-left:0px;"
-                                                class="indent in-view__child in-view__child--fadein text-black">
-                                                {{$speakers['bio']}}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row bg-blue">
@@ -223,9 +212,8 @@ Speaker Details
 
                     <div class="row">
                         <div style="display:flex; align-items:flex-end;"
-                            class="py-4 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                            class="py-4 col-lg-12 col-md-12 col-sm-12 col-xs-12 px-0">
                             <div class="board__copy in-view">
-
                                 <div style="display:flex; justify-content:flex-start; margin:0px !important;"
                                     class="board__copy--links indent in-view__child in-view__child--fadein">
                                     <input type="hidden" name="event_speaker_id" value="">
@@ -242,7 +230,7 @@ Speaker Details
                             </div>
                         </div>
 
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 px-0">
                             <header class="page-header mb-4">
                                 <h4 class="page-title text-black text-right">ALL EVENTS</h4>
                             </header>
@@ -253,9 +241,8 @@ Speaker Details
 
                             @php( $speakerss = \App\Models\Speakers::where('event_id', $event_id)->get())
 
-
                             @foreach($speakerss as $key => $datas)
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 py-3">
                                 <div class="board__copy in-view">
 
                                     <div class="">
@@ -264,19 +251,20 @@ Speaker Details
                                             src="{{ asset('uploads/speakers') }}/{{ $datas->file_path }}" alt="">
                                     </div>
                                     <p>{{$datas->name}} </p>
-                                    <div class="m-0 pb-3 board__copy--links indent in-view__child in-view__child--fadein">
+                                    <div
+                                        class="m-0 pb-3 board__copy--links indent in-view__child in-view__child--fadein">
                                         <input type="hidden" name="speaker_details_id" value="">
                                         <input type="hidden" name="events_details_id" value="">
-                                            @if ($date < $datas->date)
-                                                <a target="_blank" href="{{ $datas->register }}"><button
-                                                        class="btn bg-blue text-white pt-2" type="button">
-                                                        Register</button></a>
-                                                @else
-                                                <a href="{{ route('allevents', [ $datas->id]) }}" ><button class="btn bg-blue text-white pt-2"
-                                                    type="button">
+                                        @if ($date < $datas->date)
+                                            <a target="_blank" href="{{ $datas->register }}"><button
+                                                    class="btn bg-blue text-white pt-2" type="button">
+                                                    Register</button></a>
+                                            @else
+                                            <a href="{{ route('allevents', [ $datas->id]) }}"><button
+                                                    class="btn bg-blue text-white pt-2" type="button">
                                                     View</button></a>
                                             @endif
-                                        </a>
+                                            </a>
                                     </div>
 
                                 </div>

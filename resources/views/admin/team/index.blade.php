@@ -8,7 +8,6 @@ Admin Dashboard | Partners
 <div class="page-container ">
     <div class="page-content-wrapper ">
         <div class="content ">
-          
 
             @if(session()->has('message'))
             <div class="alert alert-success w-50" role="alert">
@@ -18,10 +17,85 @@ Admin Dashboard | Partners
             @endif
 
 
+            <div class=" container-fluid  container-fixed-lg">
+                <div class="card card-transparent">
+                    <section style="padding-bottom:0px;"><br>
+                        <header class="page-header">
+                            <h1 class="page-title" style="font-weight: bold !important;">About Us</h1>
+                            <!--<h5 class="page-subtitle"><span>Meet the dreamweavers.</span></h5>-->
+                        </header>
+                    </section>
+                    <!--<div class="card-header pt-0">
+                        <div class="pull-right">
+                            <div class="col-xs-12">
+                                <button data-toggle="modal" data-target="#addaim" id="btnStickUpSizeToggler"
+                                    class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+
+            <div class=" container-fluid  container-fixed-lg">
+                <div class="row">
+                    <div class="col-md-12">
+                        @if ($aboutus->count() > 0)
+                        @foreach($aboutus as $index => $about)
+                        <div class="col-md-12 p-0">
+                            <div class="card card-transparent m-0">
+                                <div class="card-header pt-0">
+                                    <div class="card-title events">
+                                        <h4>{{ $about->header }}</h4>
+                                    </div>
+                                    <div class=" events">
+                                        <p>{!! $about->details !!}</p>
+                                    </div>
+                                </div>
+
+                                <div class="card-body ">
+                                    <div style="display: flex;">
+                                        <div class="dropdown dropdown-default">
+                                            <button class="btn dropdown-toggle text-center"
+                                                style="width:150px!important;" type="button" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href={{"editAbout/".$about['id']}}>
+                                                    <button name="edit_event_btn" class="btn btn-success"> EDIT <i
+                                                            class="fa fa-pencil"></i></button>
+                                                </a>
+                                                <!-- <a class="dropdown-item" href={{"deleteheader/".$about['id']}}>
+                                                   <button type="submit" name="event_delete_btn"
+                                                            class="btn btn-danger">DELETE <i
+                                                                class="fa fa-trash-o"></i></button> 
+                                                </a>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        @else
+                        <div class="text-center">
+                            <h4 class="text-black ">
+                                NO DATA AVAILABLE , ADD
+                            </h4>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+
             <div class=" container-fluid   container-fixed-lg">
                 <div class="card card-transparent">
                     <section style="padding-bottom:0px;">
-                        <header class="page-header pt-2">
+                        <header class="page-header pt-5">
                             <h1 class="page-title" style="font-weight: bold !important;">Team</h1>
                             <!--<h5 class="page-subtitle"><span>Meet the dreamweavers.</span></h5>-->
                         </header>
@@ -40,7 +114,7 @@ Admin Dashboard | Partners
                         <div class="pull-right">
                             <div class="col-xs-12">
                                 <button data-toggle="modal" data-target="#addteam" id="btnStickUpSizeToggler"
-                                    class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add Team 
+                                    class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add Team
                                 </button>
                             </div>
 
@@ -62,15 +136,15 @@ Admin Dashboard | Partners
                             <div class="card-header ">
                                 <div class="card-title events">
 
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <img src="{{ asset('uploads/team/') }}/{{ $team->file_path }}"
-                                                    class="eventsimg w-100" alt="">
-                                            </div>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="{{ asset('uploads/team/') }}/{{ $team->file_path }}"
+                                                class="eventsimg w-100" alt="">
                                         </div>
+                                    </div>
                                 </div>
                             </div>
-                            
+
                             <div class="card-body ">
                                 <div class="eventdetails">
                                     <h5 class="m-0">{{ $team->name }}</h5>
@@ -86,13 +160,12 @@ Admin Dashboard | Partners
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href={{"editT/".$team['id']}}>
-                                                <button name="edit_event_btn"
-                                                    class="btn btn-success"> EDIT <i class="fa fa-pencil"></i></button>
+                                                <button name="edit_event_btn" class="btn btn-success"> EDIT <i
+                                                        class="fa fa-pencil"></i></button>
                                             </a>
                                             <a class="dropdown-item" href={{"deleteteam/".$team['id']}}>
-                                               <button type="submit" name="event_delete_btn"
-                                                        class="btn btn-danger">DELETE <i
-                                                            class="fa fa-trash-o"></i></button> 
+                                                <button type="submit" name="event_delete_btn"
+                                                    class="btn btn-danger">DELETE <i class="fa fa-trash-o"></i></button>
                                             </a>
                                         </div>
                                     </div>
@@ -104,9 +177,9 @@ Admin Dashboard | Partners
                     @endforeach
                     @else
                     <div class="text-center">
-                        <a href="" class="btn blue-btn text-white" id="add_activity">
-                            ADD Team
-                        </a>
+                        <h2 class="text-black ">
+                            NO DATA AVAILABLE , ADD
+                        </h2>
                     </div>
                     @endif
                 </div>

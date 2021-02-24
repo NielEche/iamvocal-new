@@ -30,16 +30,6 @@ Admin Dashboard | Edit Events
                         </div>
                     </div> 
 
-                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Event Image 2</label>
-                                <input type="file" id="file_path1" value="{{$events['file_path1']}}" name="file_path1" accept="image/*"
-                                    class="form-control" >
-                            </div>
-                        </div>
-                    </div> 
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
@@ -49,46 +39,6 @@ Admin Dashboard | Edit Events
                             </div>
                         </div>
                     </div>
-
-                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Event Theme</label>
-                                <input type="text" value="{{$events['event_theme']}}" name="event_theme" placeholder=""
-                                    class="form-control" >
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Event Date</label>
-                                <input type="date" value="{{$events['date']}}" name="date" placeholder="" class="form-control"
-                                    >
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Event Time</label>
-                                <input type="time" value="{{$events['time']}}" name="time" placeholder="" class="form-control"
-                                    >
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Event Venue</label>
-                                <input type="text" value="{{$events['venue']}}" name="venue" placeholder="" class="form-control"
-                                    >
-                            </div>
-                        </div>
-                    </div> 
 
                     <div class="row">
                         <div class="col-md-12">

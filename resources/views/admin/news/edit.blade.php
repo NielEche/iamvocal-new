@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin Dashboard | Edit Partners
+Admin Dashboard | Edit News
 @endsection
 
 @section('content')
@@ -10,21 +10,21 @@ Admin Dashboard | Edit Partners
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header clearfix text-left pt-5">
-                <h5>Edit <span class="semi-bold">Partner Details</span></h5>
+                <h5>Edit <span class="semi-bold">News Details</span></h5>
             </div>
             <div class="modal-body">
-                <form action="/editpartners" method="POST" enctype="multipart/form-data">
+                <form action="/editnews" method="POST" enctype="multipart/form-data">
                     
                 {{-- </form> --}}
                 {{-- <form action="{{ route('events.update')}}" method="POST" enctype="multipart/form-data" name="events" id="events"> --}}
                     @csrf
 
-                    <input type="hidden" name="id" value="{{$partners['id']}}">
+                    <input type="hidden" name="id" value="{{$news['id']}}">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>Partner Image</label>
-                                <input type="file" id="file_path" value="{{$partners['file_path']}}" name="file_path" accept="image/*"
+                                <label>News Image</label>
+                                <input type="file" id="file_path" value="{{$news['file_path']}}" name="file_path" accept="image/*"
                                     class="form-control" >
                             </div>
                         </div>
@@ -33,8 +33,8 @@ Admin Dashboard | Edit Partners
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>Partner Name</label>
-                                <input type="text" value="{{$partners['name']}}" name="name" placeholder="name"
+                                <label>Title</label>
+                                <input type="text" value="{{$news['title']}}" name="title" placeholder="title"
                                     class="form-control" >
                             </div>
                         </div>
@@ -43,13 +43,19 @@ Admin Dashboard | Edit Partners
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>Partner Type</label>
-                                <select class="form-control" name="type">
-                                <option value="{{$partners['type']}}">{{$partners['type']}}</option>
-                                <option value="principal">Principal Partners</option>
-                                <option value="sponsors">Sponsors</option>
-                                <option value="hospitality">Hospitality Partners</option>
-                                </select>
+                                <label>Date</label>
+                                <input type="text" value="{{$news['date']}}" name="date" placeholder="date"
+                                    class="form-control" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group ">
+                                <label>News Details</label>
+                                <textarea rows="10" type="text" value="" name="details" placeholder="News Details"
+                                class="form-control">{{$news['details']}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -59,7 +65,7 @@ Admin Dashboard | Edit Partners
                         </div>
                         <div class="col-md-4 m-t-10">
                             <button value="submit"
-                                class="btn btn-primary btn-block m-t-5"> <a class="text-white" href="{{ route('eventpartners.index') }}">Cancel</a></button>
+                                class="btn btn-primary btn-block m-t-5"> <a class="text-white" href="{{ route('news.index') }}">Cancel</a></button>
                         </div>
                         <div class="col-md-4 m-t-10 sm-m-t-10">
                             <button type="submit" name="submit" id="submit" value="submit"
