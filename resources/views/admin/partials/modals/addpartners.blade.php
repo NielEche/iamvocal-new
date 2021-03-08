@@ -16,8 +16,18 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>News Header</label>
+                                <label>Cover Image</label>
                                 <input type="file" id="file_path" name="file_path" accept="image/*"
+                                    class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-group-default">
+                                <label>News Header</label>
+                                <input type="file" id="file_path1" name="file_path1" accept="image/*"
                                     class="form-control" required>
                             </div>
                         </div>
@@ -47,7 +57,7 @@
                         <div class="col-md-12">
                             <div class="form-group ">
                                 <label>News details</label>
-                                <textarea rows="10" type="text" name="details" placeholder="News Details"
+                                <textarea  id="editor" rows="10" type="text" name="details" placeholder="News Details"
                                     class="form-control"></textarea>
                             </div>
                         </div>

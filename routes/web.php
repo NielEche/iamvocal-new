@@ -13,6 +13,7 @@ use App\Http\Controllers\homeHeaderController;
 use App\Http\Controllers\HomeAboutController;
 use App\Http\Controllers\CareersController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsDetailsController;
 use App\Http\Controllers\DonationsController;
 use App\Models\User;
 
@@ -37,6 +38,7 @@ Route::group([
         'liquidbox' => AdminController::class,
         'events' => EventsController::class,   
         'news' => NewsController::class,    
+        'newsdetails' => NewsDetailsController::class,    
         'aboutevent' => TeamsController::class, 
         'eventgallery' => MediaController::class,
         'editspeaker' => SpeakersController::class,
@@ -89,9 +91,14 @@ Route::post('editMedia', [MediaController::class, 'update']);
 Route::get('deletemedia/{id}',[MediaController::class, 'destroy']);
 
 Route::get('editn/{id}', [NewsController::class, 'showData']);
-Route::get('allnews/{id}', [NewsController::class, 'show']);
+Route::get('allnews/{id}', [NewsDetailsController::class, 'show']);
 Route::post('editnews', [NewsController::class, 'update']);
 Route::get('deletenews/{id}',[NewsController::class, 'destroy']);
+Route::get('allnewsdetails/{id}', [NewsDetailsController::class, 'showNews']);
+
+Route::get('allnewsdetails/editS/{id}', [NewsDetailsController::class, 'showData']);
+Route::post('editnewsdetails', [NewsDetailsController::class, 'update']);
+Route::get('allnewsdetails/deleteND/{id}',[NewsDetailsController::class, 'destroy']);
 
 Route::get('allspeakers/editS/{id}', [SpeakersController::class, 'showData']);
 Route::post('editSpeaker', [SpeakersController::class, 'update']);
