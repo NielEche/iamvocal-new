@@ -7,7 +7,7 @@ Admin Dashboard | Partners
 @section('content')
 <div class="page-container ">
     <div class="page-content-wrapper ">
-        <div class="content ">  
+        <div class="content ">
 
             @if(session()->has('message'))
             <div class="alert alert-success w-50" role="alert">
@@ -60,16 +60,15 @@ Admin Dashboard | Partners
                         <div class="card card-transparent m-0">
                             <div class="card-header ">
                                 <div class="card-title events">
-
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <img src="{{ asset('uploads/news/') }}/{{ $news->file_path }}"
-                                                    class="eventsimg w-100" alt="">
-                                            </div>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="{{ asset('uploads/news/') }}/{{ $news->file_path }}"
+                                                class="eventsimg w-100" alt="">
                                         </div>
+                                    </div>
                                 </div>
                             </div>
-                            
+
                             <div class="card-body ">
                                 <div class="eventdetails">
                                     <h5 class="m-0">{{ $news->title }}</h5>
@@ -84,14 +83,17 @@ Admin Dashboard | Partners
                                             Action
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href={{"editn/".$news['id']}}>
-                                                <button name="edit_event_btn"
-                                                    class="btn btn-success"> EDIT <i class="fa fa-pencil"></i></button>
+                                            <a class="py-1 dropdown-item" href="{{"allnewsdetails/".$news['id']}}">
+                                                <button type="submit" name="add_eventspeaker_btn"
+                                                    class="btn btn-success">ADD MORE</button>
                                             </a>
-                                            <a class="dropdown-item" href={{"deletenews/".$news['id']}}>
-                                               <button type="submit" name="event_delete_btn"
-                                                        class="btn btn-danger">DELETE <i
-                                                            class="fa fa-trash-o"></i></button> 
+                                            <a class="dropdown-item" href={{"editn/".$news['id']}}>
+                                                <button name="edit_event_btn" class="btn btn-success"> EDIT <i
+                                                        class="fa fa-pencil"></i></button>
+                                            </a>
+                                            <a class="py-1 dropdown-item" href={{"deletenews/".$news['id']}}>
+                                                <button type="submit" name="event_delete_btn"
+                                                    class="btn btn-danger">DELETE <i class="fa fa-trash-o"></i></button>
                                             </a>
                                         </div>
                                     </div>

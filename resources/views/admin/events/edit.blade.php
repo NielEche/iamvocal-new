@@ -44,7 +44,7 @@ Admin Dashboard | Edit Events
                         <div class="col-md-12">
                             <div class="form-group ">
                                 <label>About</label>
-                                <textarea rows="10" type="text" value="" name="about" placeholder="About Event"
+                                <textarea  id="editor" rows="10" type="text" value="" name="about" placeholder="About Event"
                                 class="form-control">{{$events['about']}}</textarea>
                             </div>
                         </div>

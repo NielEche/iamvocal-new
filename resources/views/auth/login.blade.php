@@ -10,16 +10,16 @@ Login
 
 <div class="login-wrapper ">
     <div class="bg-pic">
-        <img src="{{ asset('files/media/slide.jpg') }}" alt=""
+        <img src="{{ asset('files/media/slide4.jpg') }}" alt=""
             class="lazy">
 
 
         <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
             <h2 class="semi-bold text-white">
-                TEDxPortHarcourt</h2>
+               IAMVOCAL</h2>
             <p class="small">
-                images Displayed are solely for representation purposes only, All work copyright of © 2009-2020
-                TEDXPORTHARCOURT.
+                images Displayed are solely for representation purposes only, All work copyright of ©
+                IAMVOCAL.
             </p>
         </div>
     </div>
@@ -27,8 +27,8 @@ Login
 
     <div class="login-container bg-white">
         <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
-            <img src="{{ asset('files/media/tedxphlogoblack.png') }}" alt="logo"  width="90" height="34">
-            <p class="p-t-35">Sign into your TEDXPH account</p>
+            <h4>IAMVOCAL</h4>
+            <p class="p-t-15">Sign into your IAMVOCAL account</p>
     
             @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">

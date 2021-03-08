@@ -55,6 +55,18 @@ class NewsController extends Controller
                 $news->file_path = '';
             }
 
+
+            if ($request->hasfile('file_path1')) {
+                $file = $request->file('file_path1');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move('uploads/news/', $filename);
+                $news->file_path1 = $filename;
+            } else {
+                return $request;
+                $news->file_path1 = '';
+            }
+
             $news->save();
      
             return redirect('news')->with('message', 'News Added Succesfully!');
@@ -131,6 +143,18 @@ class NewsController extends Controller
             } else {
                 $news->save();
             }
+
+
+            if ($request->hasfile('file_path1')) {
+                $file = $request->file('file_path1');
+                $extension = $file->getClientOriginalExtension();
+                $file_path1 = time() . '.' . $extension;
+                $file->move('uploads/news/', $file_path1);
+                $news->file_path1 = $file_path1;
+            } else {
+                $news->save();
+            }
+
 
             $news->save();
     

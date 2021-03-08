@@ -20,11 +20,22 @@ Admin Dashboard | Edit News
                     @csrf
 
                     <input type="hidden" name="id" value="{{$news['id']}}">
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>News Image</label>
+                                <label>Cover Image</label>
                                 <input type="file" id="file_path" value="{{$news['file_path']}}" name="file_path" accept="image/*"
+                                    class="form-control" >
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-group-default">
+                                <label>News Header Image</label>
+                                <input type="file" id="file_path1" value="{{$news['file_path1']}}" name="file_path1" accept="image/*"
                                     class="form-control" >
                             </div>
                         </div>
@@ -54,7 +65,7 @@ Admin Dashboard | Edit News
                         <div class="col-md-12">
                             <div class="form-group ">
                                 <label>News Details</label>
-                                <textarea rows="10" type="text" value="" name="details" placeholder="News Details"
+                                <textarea id="editor" rows="10" type="text" value="" name="details" placeholder="News Details"
                                 class="form-control">{{$news['details']}}</textarea>
                             </div>
                         </div>

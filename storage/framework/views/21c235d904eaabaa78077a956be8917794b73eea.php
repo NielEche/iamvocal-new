@@ -22,14 +22,14 @@ Media
 </section>-->
 
 <style>
-    #st-el-1 .st-btn[data-network='facebook'] ,
-    #st-el-1 .st-btn[data-network='twitter'] ,
-    #st-el-1 .st-btn[data-network='pinterest'] ,
-    #st-el-1 .st-btn[data-network='email'] ,
-    #st-el-1 .st-btn[data-network='sharethis'] ,
+    #st-el-1 .st-btn[data-network='facebook'],
+    #st-el-1 .st-btn[data-network='twitter'],
+    #st-el-1 .st-btn[data-network='pinterest'],
+    #st-el-1 .st-btn[data-network='email'],
+    #st-el-1 .st-btn[data-network='sharethis'],
     #st-el-1 .st-btn[data-network='whatsapp'] {
-  background-color: #000 !important;
-}
+        background-color: #000 !important;
+    }
 
 </style>
 
@@ -50,8 +50,9 @@ Media
                     <div class=" poster poster--square ">
                         <a href="#" data-toggle="modal" data-target="#videosDetails<?php echo e($data->id); ?>">
                             <figure class="m-0">
-                                <img class="lazyload--el in-view__child lazyloaded in-view__child--in" src="<?php echo e(asset('uploads/eventgallery')); ?>/<?php echo e($data->file_path); ?>" 
-                                    alt="" width="445" height="445">
+                                <img class="lazyload--el in-view__child lazyloaded in-view__child--in"
+                                    src="<?php echo e(asset('uploads/eventgallery')); ?>/<?php echo e($data->file_path); ?>" alt="" width="445"
+                                    height="445">
                                 <div class="poster--cover in-view in-view__child in-view--in in-view__child--in">
                                 </div>
                             </figure>
@@ -70,7 +71,7 @@ Media
                         </p>
                     </div>
                 </div>
-             
+
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
@@ -82,20 +83,25 @@ Media
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="team-members pt-5">
-                    <div class="in-view in-view--in py-4">
-                        <h1 class="page-title page-title2 text-white">News</h1>
+                    <div class="in-view in-view--in text-white py-4">
+                        <h2 class="fw-26 ">iamvocal | news & archives</h2>
+                        <p class="col-lg-5 px-0  fw-14 lh-1-5">We are a community of people who have decided to let
+                            their voices be heard in matters concerning their governance as well as their overall
+                            wellbeing. We believe that when people trust the system of selection of their leaders, they
+                            would be active participants in their governance.</p>
                     </div>
                 </div>
             </div>
             <?php $__currentLoopData = $news; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $news): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <?php echo $__env->make('partials.modals.videos', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 py-2">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 py-4">
                 <div class="member">
                     <div class="poster poster--square ">
                         <a href=<?php echo e("allnews/".$news['id']); ?>>
                             <figure class="m-0">
-                                <img class="lazyload--el in-view__child lazyloaded in-view__child--in" src="<?php echo e(asset('uploads/news')); ?>/<?php echo e($news->file_path); ?>" 
-                                    alt="" width="445" height="445">
+                                <img class="lazyload--el in-view__child lazyloaded in-view__child--in"
+                                    src="<?php echo e(asset('uploads/news')); ?>/<?php echo e($news->file_path); ?>" alt="" width="445"
+                                    height="445">
                                 <div class="poster--cover in-view in-view__child in-view--in in-view__child--in">
                                 </div>
                             </figure>
@@ -109,7 +115,7 @@ Media
                         </h6>
                     </div>
                 </div>
-             
+
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>

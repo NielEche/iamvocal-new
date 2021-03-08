@@ -37,7 +37,7 @@
                         <div class="col-md-12">
                             <div class="form-group ">
                                 <label>About</label>
-                                <textarea rows="10" type="text" name="about" placeholder="About Event"
+                                <textarea id="editor" rows="10" type="text" name="about" placeholder="About Event"
                                     class="form-control"></textarea>
                             </div>
                         </div>
