@@ -124,7 +124,7 @@ Admin Dashboard | Edit Events
                         </div>
                         <div class="col-md-4 m-t-10">
                             <button value="submit"
-                                class="btn btn-primary btn-block m-t-5"> <a class="text-white" href="<?php echo e(route('events.index')); ?>">Cancel</a></button>
+                                class="btn btn-primary btn-block m-t-5"> <a class="text-white" href="<?php echo e(url()->previous()); ?>">Cancel</a></button>
                         </div>
                         <div class="col-md-4 m-t-10 sm-m-t-10">
                             <button type="submit" name="submit" id="submit" value="submit"

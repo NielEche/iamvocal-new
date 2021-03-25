@@ -43,7 +43,7 @@ Admin Dashboard | Speakers
                         </div>
                     </section>
 
-                    <div class="card-header ">
+                    <div class="container card-header ">
                         <div class="pull-right">
                             <div class="col-xs-12">
                                 <button data-toggle="modal" data-target="#addspeakers" id="btnStickUpSizeToggler"
@@ -78,15 +78,11 @@ Admin Dashboard | Speakers
                             <ul class="nav nav-tabs nav-tabs-fillup" data-init-reponsive-tabs="dropdownfx">
                                 <li class="nav-item">
                                     <a href="#" class="active" data-toggle="tab"
-                                        data-target="#{{ $speaker->id }}1"><span>Profile</span></a>
+                                        data-target="#{{ $speaker->id }}1"><span>Details</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" data-toggle="tab"
-                                        data-target="#{{ $speaker->id }}2"><span>Details</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" data-toggle="tab"
-                                        data-target="#{{ $speaker->id }}3"><span>Video</span></a>
+                                        data-target="#{{ $speaker->id }}2"><span>About</span></a>
                                 </li>
                             </ul>
 
@@ -110,29 +106,31 @@ Admin Dashboard | Speakers
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane slide-left" id="{{ $speaker->id }}3">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class='member__name member__name1 in-view__child in-view__child--fadein in-view__child--in'
-                                                height="100px">{{ $speaker->flickr }}</div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex;">
+                            <div class="dropdown dropdown-default ">
+                                <button class="btn dropdown-toggle text-center" style="width:150px!important;"
+                                    type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Action
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item py-1" href={{"editS/".$speaker->id}}>
+                                        <button type="submit" name="edit_speaker_btn" class="btn btn-success"><i
+                                                class="fa fa-pencil"></i>
+                                        </button>
+                                    </a>
+                                    <a class="dropdown-item" href={{"deletespeaker/".$speaker['id']}}>
+                                        <button type="submit" name="speaker_delete_btn" class="btn btn-danger"><i
+                                                class="fa fa-trash-o"></i>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="btn-group">
-                            <a class="dropdown-item" href={{"editS/".$speaker->id}}>
-                                <button type="submit" name="edit_speaker_btn" class="btn btn-success"><i
-                                        class="fa fa-pencil"></i>
-                                </button>
-                            </a>
-                            <a class="dropdown-item" href={{"deletespeaker/".$speaker['id']}}>
-                                <button type="submit" name="speaker_delete_btn" class="btn btn-danger"><i
-                                        class="fa fa-trash-o"></i>
-                                </button>
-                            </a>
-                        </div>
                         <hr>
                     </div>
                     @endforeach
