@@ -120,7 +120,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('careers') }}#donations">
+                                        <a href="{{ route('donate') }}#donations">
                                             <span>Donate</span>
                                         </a>
                                     </li>
@@ -131,11 +131,13 @@
                                 <ul class="sub-menu">
                                     @foreach($events as $key => $data)
                                     <li>
-                                        <a href="{{ route('subevents', [ $data->id]) }}">
-                                            <span>{{ $data->event_theme}}</span>
+                                        <a  href="{{ route('subevents', [ $data->id]) }}">
+                                            <span>{{ $data->event_name}}</span>
                                         </a>
                                     </li>
+                                  
                                     @endforeach
+
                                     <li>
                                         <a href="https://voices.i-amvocal.org/join" target="_blank">
                                             <span>Voices</span>
