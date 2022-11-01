@@ -30,18 +30,32 @@ Admin Dashboard | Home
                 </div>
             </div>
 
+            <div class="container py-4">
+                <div class="pull-right">
+                    <div class="col-xs-12">
+                        <button data-toggle="modal" data-target="#addslider" id="btnStickUpSizeToggler"
+                            class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add Image
+                        </button>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            
+
             <div class=" container-fluid  container-fixed-lg">
                 <div class="row">
                     @if ($homeHeader->count() > 0)
                     @foreach($homeHeader as $index => $slider)
-                    <div class="col-md-12 p-0">
+                    <div class="col-md-3 p-0">
                         <div class="card card-transparent m-0">
-                            <div class="card-header ">
+                            <div class="card-header col-lg-12 col-sm-12">
                                 <div class="card-title events">
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
                                                 <img src="{{ asset('uploads/homepage/') }}/{{ $slider->file_path }}"
                                                     class="eventsimg w-100" alt="">
+                                                    <p>{{ $slider->button_text }}</p>
                                             </div>
                                         </div>
                                 </div>
@@ -60,11 +74,11 @@ Admin Dashboard | Home
                                                 <button name="edit_event_btn"
                                                     class="btn btn-success"> EDIT <i class="fa fa-pencil"></i></button>
                                             </a>
-                                           <!-- <a class="dropdown-item" href={{"deleteheader/".$slider['id']}}>
+                                           <a class="dropdown-item" href={{"deleteheader/".$slider['id']}}>
                                                <button type="submit" name="event_delete_btn"
                                                         class="btn btn-danger">DELETE <i
                                                             class="fa fa-trash-o"></i></button> 
-                                            </a>-->
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -224,6 +238,7 @@ Admin Dashboard | Home
 </div>
 
 @include('admin.partials.modals.addaim')
+@include('admin.partials.modals.addslider')
 @endsection
 
 @section('script')

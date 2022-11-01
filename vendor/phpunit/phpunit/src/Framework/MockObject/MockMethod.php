@@ -10,24 +10,29 @@
 namespace PHPUnit\Framework\MockObject;
 
 use const DIRECTORY_SEPARATOR;
+use function explode;
 use function implode;
+use function is_object;
 use function is_string;
 use function preg_match;
 use function preg_replace;
 use function sprintf;
+use function strlen;
+use function strpos;
+use function substr;
 use function substr_count;
 use function trim;
 use function var_export;
-use ReflectionException;
+use ReflectionIntersectionType;
 use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionParameter;
 use ReflectionUnionType;
+use SebastianBergmann\Template\Exception as TemplateException;
 use SebastianBergmann\Template\Template;
 use SebastianBergmann\Type\ReflectionMapper;
 use SebastianBergmann\Type\Type;
 use SebastianBergmann\Type\UnknownType;
-use SebastianBergmann\Type\VoidType;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
@@ -95,6 +100,7 @@ final class MockMethod
     private $deprecation;
 
     /**
+     * @throws ReflectionException
      * @throws RuntimeException
      */
     public static function fromReflection(ReflectionMethod $method, bool $callOriginalMethod, bool $cloneArguments): self
@@ -133,7 +139,7 @@ final class MockMethod
             $modifier,
             self::getMethodParametersForDeclaration($method),
             self::getMethodParametersForCall($method),
-            (new ReflectionMapper)->fromMethodReturnType($method),
+            (new ReflectionMapper)->fromReturnType($method),
             $reference,
             $callOriginalMethod,
             $method->isStatic(),
@@ -185,9 +191,9 @@ final class MockMethod
     {
         if ($this->static) {
             $templateFile = 'mocked_static_method.tpl';
-        } elseif ($this->returnType instanceof VoidType) {
+        } elseif ($this->returnType->isNever() || $this->returnType->isVoid()) {
             $templateFile = sprintf(
-                '%s_method_void.tpl',
+                '%s_method_never_or_void.tpl',
                 $this->callOriginalMethod ? 'proxied' : 'mocked'
             );
         } else {
@@ -238,12 +244,23 @@ final class MockMethod
         return $this->returnType;
     }
 
+    /**
+     * @throws RuntimeException
+     */
     private function getTemplate(string $template): Template
     {
         $filename = __DIR__ . DIRECTORY_SEPARATOR . 'Generator' . DIRECTORY_SEPARATOR . $template;
 
         if (!isset(self::$templates[$filename])) {
-            self::$templates[$filename] = new Template($filename);
+            try {
+                self::$templates[$filename] = new Template($filename);
+            } catch (TemplateException $e) {
+                throw new RuntimeException(
+                    $e->getMessage(),
+                    (int) $e->getCode(),
+                    $e
+                );
+            }
         }
 
         return self::$templates[$filename];
@@ -292,7 +309,11 @@ final class MockMethod
             }
 
             if ($type !== null) {
-                if ($typeName !== 'mixed' && $parameter->allowsNull() && !$type instanceof ReflectionUnionType) {
+                if ($typeName !== 'mixed' &&
+                    $typeName !== 'null' &&
+                    !$type instanceof ReflectionIntersectionType &&
+                    !$type instanceof ReflectionUnionType &&
+                    $parameter->allowsNull()) {
                     $nullable = '?';
                 }
 
@@ -305,6 +326,8 @@ final class MockMethod
                         $type,
                         $method->getDeclaringClass()->getName()
                     );
+                } elseif ($type instanceof ReflectionIntersectionType) {
+                    $typeDeclaration = self::intersectionTypeAsString($type);
                 }
             }
 
@@ -321,7 +344,7 @@ final class MockMethod
     /**
      * Returns the parameters of a function or method.
      *
-     * @throws RuntimeException
+     * @throws ReflectionException
      */
     private static function getMethodParametersForCall(ReflectionMethod $method): string
     {
@@ -352,15 +375,33 @@ final class MockMethod
     }
 
     /**
-     * @throws RuntimeException
+     * @throws ReflectionException
      */
     private static function exportDefaultValue(ReflectionParameter $parameter): string
     {
         try {
-            return (string) var_export($parameter->getDefaultValue(), true);
+            $defaultValue = $parameter->getDefaultValue();
+
+            if (!is_object($defaultValue)) {
+                return (string) var_export($defaultValue, true);
+            }
+
+            $parameterAsString = $parameter->__toString();
+
+            return (string) explode(
+                ' = ',
+                substr(
+                    substr(
+                        $parameterAsString,
+                        strpos($parameterAsString, '<optional> ') + strlen('<optional> ')
+                    ),
+                    0,
+                    -2
+                )
+            )[1];
             // @codeCoverageIgnoreStart
-        } catch (ReflectionException $e) {
-            throw new RuntimeException(
+        } catch (\ReflectionException $e) {
+            throw new ReflectionException(
                 $e->getMessage(),
                 (int) $e->getCode(),
                 $e
@@ -382,5 +423,16 @@ final class MockMethod
         }
 
         return implode('|', $types) . ' ';
+    }
+
+    private static function intersectionTypeAsString(ReflectionIntersectionType $intersection): string
+    {
+        $types = [];
+
+        foreach ($intersection->getTypes() as $type) {
+            $types[] = $type;
+        }
+
+        return implode('&', $types) . ' ';
     }
 }

@@ -41,6 +41,18 @@ Admin Dashboard | Edit Home Images
                     </div>
 
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-group-default">
+                                <label>Link</label>
+                                <input type="text" value="{{$homeImages['links']}}" id="links" name="links" placeholder="{{$homeImages['links']}}"
+                                    class="form-control" >
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                    <div class="row">
                         <div class="col-md-4">
                         </div>
                         <div class="col-md-4 m-t-10">

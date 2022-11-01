@@ -65,6 +65,7 @@ class homeHeaderController extends Controller
     
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -192,6 +193,7 @@ class homeHeaderController extends Controller
 
            $homeImages->update([
                'caption' => $request['caption'],
+               'links' => $request['links'],
            ]);
 
            if ($request->hasfile('file_path')) {

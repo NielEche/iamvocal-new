@@ -13,18 +13,19 @@ Reframe
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="team-members">
                     <div class="row ">
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-                            <h1 style="margin-bottom:0px;" class="text-white">Donate Us Today !!</h1>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
+                            <h1 style="margin-bottom:0px;" class="text-white">Donate To Us Today !!</h1>
                             <p class="text-white">Let’s help make our communities better by improving the quality of
                                 lives and providing basic needs for the less privileged and the forgotten in our
                                 society. Join others and make a commitment today.</p>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                       {{--  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <p class="d-flex justify-content-center pt-5">
                                 <button type="submit" class="btn text-white bg-blue btn-submit"
                                     style="border-radius: 0px !important;">Donate</button>
                             </p>
-                        </div>
+
+                        </div> --}}
                     </div>
 
                 </div>
@@ -33,6 +34,10 @@ Reframe
     </div>
 </section>
 
+
+@if ($donations->count())
+@foreach ($donations->take(1) as $item)
+@if ($item->caption != null)
 <section class="section bg-black ">
     <div class="container bg-black pt-5 pb-3">
         <div class="row">
@@ -43,24 +48,51 @@ Reframe
             </div>
 
             <!--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 bg-black">
-                <div class="p-5 text-white">
-                    <h5>About TEDxPortHarcourt Salon </h5>
-                    <p>TEDxPortHarcourt introduces the Salon: amonthly speaker
-                        series which brings some of the city’s most inspired thinkers to share perspectives
-                        and spark conversation. A unique mixture of talks,workshops and interactive
-                        experiences. </p>
-                    <p>Salon events will bring our community ofinnovators and instigators together in informal evening forums to learn andengage on provocative themes each...</p>
-                    <button class="btn border border-white text-white p-2 fw-12">Read More</button>
-                </div>
-            </div>-->
+                    <div class="p-5 text-white">
+                        <h5>About TEDxPortHarcourt Salon </h5>
+                        <p>TEDxPortHarcourt introduces the Salon: amonthly speaker
+                            series which brings some of the city’s most inspired thinkers to share perspectives
+                            and spark conversation. A unique mixture of talks,workshops and interactive
+                            experiences. </p>
+                        <p>Salon events will bring our community ofinnovators and instigators together in informal evening forums to learn andengage on provocative themes each...</p>
+                        <button class="btn border border-white text-white p-2 fw-12">Read More</button>
+                    </div>
+                </div>-->
         </div>
     </div>
+
     <section class="timeline">
         <ol>
             @foreach($donations as $key => $data)
             <li>
                 <div>
-                    <time>{{ \Carbon\Carbon::parse($data->date)->format('M d Y')}}</time> {!! $data->caption !!}
+                    <time>N{{$data->amount }}</time>
+                    <strong>{{$data->header }}</strong> -
+                    <strong>{{ \Carbon\Carbon::parse($data->date)->format('M d Y')}}</strong> 
+                    {!! $data->caption !!}
+                   <form method="POST" action="{{ route('pay') }}" accept-charset="UTF-8"
+                   class="form-horizontal" role="form">
+                   <input type="hidden" name="email" value="iamvocalng@gmail.com">
+                   {{-- required --}}
+                   <input type="hidden" name="orderID" value="{{ $data->id }}21">
+                   <input type="hidden" name="amount" value="{{ $data->amount*100 }}"> {{-- required in kobo --}}
+                   <input type="hidden" name="quantity" value="1">
+                   <input type="hidden" name="currency" value="NGN">
+                   <input type="hidden" name="metadata"
+                       value="{{ json_encode($array = ['key_name' => 'value',]) }}">
+                   {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                   <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}">
+                   {{-- required --}}
+
+                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                   {{-- employ this in place of csrf_field only in laravel 5.0 --}}
+                        <p class="">
+                            <button class="btn text-white bg-blue btn-submit"
+                                style="border-radius: 0px !important;" type="submit" value="Pay Now!">
+                                <i class="fa fa-plus-circle fa-lg"></i> Donate Now!
+                            </button>
+                        </p>
+                   </form>
                 </div>
             </li>
             @endforeach
@@ -84,6 +116,12 @@ Reframe
         </div>
     </section>
 </section>
+@else
+<div></div>
+@endif
+@endforeach
+@endif
+
 
 <script>
     (function () {

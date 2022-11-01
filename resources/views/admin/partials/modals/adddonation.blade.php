@@ -45,6 +45,16 @@
 
                     <div class="row">
                         <div class="col-md-12">
+                            <div class="form-group form-group-default">
+                                <label>Amount</label>
+                                <input type="number" name="amount" placeholder=""
+                                    class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group ">
                                 <label>About</label>
                                 <textarea id="editor" rows="10" type="text" name="caption" placeholder="Request details"
@@ -57,8 +67,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>Donation Url</label>
-                                <input type="text" name="url" placeholder="url"
+                               {{--  <label>Donation Url</label> --}}
+                                <input type="text" class="hidden" value="testing" name="url" placeholder="url"
                                     class="form-control" required>
                             </div>
                         </div>

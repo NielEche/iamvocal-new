@@ -63,16 +63,7 @@
                                                         </a>
                                                     </li>
                                                     @endforeach
-                                                    <li>
-                                                        <a href="https://voices.i-amvocal.org/join"  target="_blank">
-                                                            <span>VOICES</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <span>Post Mortem</span>
-                                                        </a>
-                                                    </li>
+                                                
                                                 </ul>
                                             </li>
                                           

@@ -45,6 +45,16 @@
 
                     <div class="row">
                         <div class="col-md-12">
+                            <div class="form-group form-group-default">
+                                <label>Serial Id</label>
+                                <input type="text" name="serial_id" placeholder="role"
+                                    class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group ">
                                 <label>About</label>
                                 <textarea rows="10" type="text" name="about" placeholder="About member"

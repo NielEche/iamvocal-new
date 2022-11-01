@@ -5,7 +5,7 @@ Home
 @endsection
 
 @section('content')
-@php( $home_headers = \App\Models\HomeHeader::all() )
+@php( $home_headers = \App\Models\HomeHeader::orderBy('id', 'desc')->get() )
 @php( $home_abouts = \App\Models\HomeAbout::all() )
 @php( $homeimages = \App\Models\HomeImages::all() )
 @php( $team = \App\Models\tedxphteams::orderBy('id', 'asc')->limit(5)->get() )
@@ -13,15 +13,45 @@ Home
 <section class="section section--singular2 video bg-black">
     <div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active ">
-                @foreach($home_headers as $key => $data)
+            @foreach($home_headers as $key => $data)
+            <div class="carousel-item  {{ $loop->first ? 'active' : '' }}">
                 <img src="{{ asset('uploads/homepage') }}/{{ $data->file_path }}" class="d-block w-100" alt="Image">
-                @endforeach
-            </div>
+                <div class="carousel-caption d-none d-md-block" style="margin-bottom: 13%">
+                    <h1 class="py-3" style="text-align:left !important;">{{ $data->button_text }}</h1>
+                    @if($data->button_link != null)
+                    <a style="text-align:left !important; font-size:15px !important; float:left !important;"
+                        class="py-2" href="{{ $data->button_link }}">
+                        <button style="font-size:15px !important; border-radius:0px !important;"
+                            class="btn bg-blue text-white py-2" type="button">See More</button>
+                    </a>
+                    @else
 
+                    @endif
+
+                </div>
+                <div class="carousel-caption d-md-none" style="margin-bottom: 0%">
+                    <h1 class="py-1 fw-24" style="text-align:left !important;">{{ $data->button_text }}</h1>
+                    <a style="text-align:left !important; font-size:15px !important; float:left !important;"
+                        class="py-1" href="{{ $data->button_link }}">
+                        <button style="font-size:10px !important; border-radius:0px !important;"
+                            class="btn bg-blue text-white py-2" type="button">See More</button>
+                    </a>
+
+                </div>
+            </div>
+            @endforeach
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
 
     </div>
+
 </section>
 
 <section class="section bg-blue">
@@ -55,7 +85,7 @@ Home
                 <div style="background-color: #fff !important; border-top:none !important;">
                     <div class="text-black bottom " style="height:100% !important;">
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12  ">
-                            <img src="{{ asset('files/media/data.jpg') }}" alt="">
+                            <img src="{{ asset('files/media/IAMVPMArtboard 7.svg') }}" alt="">
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 py-5">
@@ -97,23 +127,58 @@ Home
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mt-4">
                 <h5 class="py-5">
-                    <img src="{{ asset('files/media/question.png') }}" alt="">
+                    <!--<img src="{{ asset('files/media/question.png') }}" alt="">-->
                     <img src="{{ asset('files/media/voiceslogo.png') }}" alt="">
                 </h5>
-                <p class="text-white bottom fw-bold fw-18">Voices allows you to speak up against societal ills and
-                    malpractices
-                    happening in our communities and
-                    provide government representatives with information on the citizen’s sentiments and expectations.We
-                    collate the data based on the voice outs of citizens and publish this on the listen page so that
-                    government representatives are aware of the people’s needs by so doing responds according and in the
-                    situation of crisis intervene before the situation escalates.</p>
-                <button class="btn border border-white text-white py-3 p-2 mt-3" type="button"> <a
+                <p class="text-white bottom fw-bold fw-18 mb-4">VOICES - is an online tool that maps, tracks and
+                    measures systemic impact of Complex Social Policy ( CSP) problems commonly known as "wicked
+                    problems" in the social purpose sector. Wicked problems are hard to resolve as each takes place
+                    within a unique context and has many interconnected root causes. Examples of wicked problems
+                    include: climate change, poverty, Violence , corruption etc.
+
+                    It is difficult to successfully tackle these problems with traditional linear, analytical
+                    approaches, where individual initiatives focus on one or a few root cause, or by replicating
+                    initiatives that have been developed in other contexts.
+                </p>
+                <button class="btn border border-white text-white py-2 px-2 " type="button"> <a
                         style="text-decoration: none !important; color:#fff !important;"
-                        href="https://voices.i-amvocal.org/join">See More</a> </button>
+                        href="https://www.i-amvocal.org/ourevents/5">See More</a> </button>
+                <a target="_blank" href="https://voices.i-amvocal.org/login"
+                    class="text-decoration-none text-right px-3 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fff"
+                        class="bi bi-arrow-up-right-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.854 10.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z">
+                        </path>
+                    </svg>
+                </a>
             </div>
             <div class="col-lg-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <img class="mt-5" src="{{ asset('files/media/vphone.png') }}" alt="">
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-black">
+    <div class="container-fluid">
+        <div class="row">
+            @foreach($homeimages as $key => $data)
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 p-0">
+                <h2 class="px-5 text-white text-center py-"
+                    style="position:absolute; text-align:center !important; line-height: 37px !important; margin-top:30%; font-size:22px !important;">
+                    <span>
+                        {{ $data->caption }}</span>
+                </h2>
+                <a style="position:absolute; margin-top:37%; font-size:15px !important;" class="pt-2 px-5 text-white"
+                    href="{{ $data->links }}"><button style="font-size:15px !important; border-radius:0px !important;"
+                        class="btn bg-blue text-white py-2 " type="button">
+                        See More</button></a>
+
+                <img style="object-fit:cover;" class="homeimg"
+                    src="{{ asset('uploads/homepage') }}/{{ $data->file_path }}" alt="{{ $data->caption }}">
+            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -177,17 +242,6 @@ Home
     </div>
 </section>
 
-<section class="section bg-black">
-    <div class="container-fluid">
-        <div class="row">
-            @foreach($homeimages as $key => $data)
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 p-0">
-                <img style="object-fit:cover;" class="homeimg" src="{{ asset('uploads/homepage') }}/{{ $data->file_path }}" alt="{{ $data->caption }}">
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
 
 <style type="text/css">
     .member,

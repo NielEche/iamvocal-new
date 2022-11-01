@@ -129,6 +129,7 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
+                'alpinejs' => '^2.7.3',
                 '@tailwindcss/ui' => '^0.6.0',
                 'postcss-import' => '^12.0.1',
                 'tailwindcss' => '^1.8.0',
@@ -138,7 +139,7 @@ class InstallCommand extends Command
         // Tailwind Configuration...
         copy(__DIR__.'/../../stubs/livewire/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/webpack.config.js', base_path('webpack.config.js'));
-        copy(__DIR__.'/../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../stubs/livewire/webpack.mix.js', base_path('webpack.mix.js'));
 
         // Directories...
         (new Filesystem)->ensureDirectoryExists(app_path('Actions/Fortify'));
@@ -193,6 +194,7 @@ class InstallCommand extends Command
         // Assets...
         copy(__DIR__.'/../../stubs/public/css/app.css', public_path('css/app.css'));
         copy(__DIR__.'/../../stubs/resources/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__.'/../../stubs/resources/js/app.js', resource_path('js/app.js'));
 
         // Teams...
         if ($this->option('teams')) {
@@ -244,7 +246,7 @@ EOF;
     protected function installInertiaStack()
     {
         // Install Inertia...
-        $this->requireComposerPackages('inertiajs/inertia-laravel:^0.2.4', 'laravel/sanctum:^2.6', 'tightenco/ziggy:^0.9.4');
+        $this->requireComposerPackages('inertiajs/inertia-laravel:^0.5.2', 'laravel/sanctum:^2.6', 'tightenco/ziggy:^0.9.4');
 
         // Install NPM packages...
         $this->updateNodePackages(function ($packages) {
@@ -253,10 +255,12 @@ EOF;
                 '@inertiajs/inertia-vue' => '^0.2.0',
                 '@tailwindcss/ui' => '^0.6.0',
                 'laravel-jetstream' => '^0.0.3',
+                'moment' => '^2.26.0',
                 'portal-vue' => '^2.1.7',
                 'postcss-import' => '^12.0.1',
                 'tailwindcss' => '^1.8.0',
                 'vue' => '^2.5.17',
+                'vue-loader' => '^15.9.6',
                 'vue-template-compiler' => '^2.6.10',
             ] + $packages;
         });
@@ -274,7 +278,7 @@ EOF;
         // Tailwind Configuration...
         copy(__DIR__.'/../../stubs/inertia/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/../../stubs/webpack.config.js', base_path('webpack.config.js'));
-        copy(__DIR__.'/../../stubs/webpack.mix.js', base_path('webpack.mix.js'));
+        copy(__DIR__.'/../../stubs/inertia/webpack.mix.js', base_path('webpack.mix.js'));
 
         // Directories...
         (new Filesystem)->ensureDirectoryExists(app_path('Actions/Fortify'));

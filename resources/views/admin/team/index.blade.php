@@ -149,6 +149,7 @@ Admin Dashboard | Partners
                                 <div class="eventdetails">
                                     <h5 class="m-0">{{ $team->name }}</h5>
                                     <p class="m-0">{{ $team->position }}</p>
+                                    <p class="m-0">{{ $team->serial_id }}</p>
                                 </div>
 
                                 <div style="display: flex;">

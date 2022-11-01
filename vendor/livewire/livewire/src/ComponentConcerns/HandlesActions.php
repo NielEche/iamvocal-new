@@ -3,7 +3,6 @@
 namespace Livewire\ComponentConcerns;
 
 use Livewire\Livewire;
-use Illuminate\Support\Str;
 use Livewire\ImplicitlyBoundMethod;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Exceptions\MethodNotFoundException;
@@ -13,6 +12,7 @@ use Livewire\Exceptions\MissingFileUploadsTraitException;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Livewire\HydrationMiddleware\HashDataPropertiesForDirtyDetection;
 use Livewire\Exceptions\CannotBindToModelDataWithoutValidationRuleException;
+use function Livewire\str;
 
 trait HandlesActions
 {
@@ -56,20 +56,24 @@ trait HandlesActions
 
     protected function callBeforeAndAfterSyncHooks($name, $value, $callback)
     {
-        $propertyName = Str::before(Str::studly($name), '.');
-        $keyAfterFirstDot = Str::contains($name, '.') ? Str::after($name, '.') : null;
-        $keyAfterLastDot = Str::contains($name, '.') ? Str::afterLast($name, '.') : null;
+        $name = str($name);
+
+        $propertyName = $name->studly()->before('.');
+        $keyAfterFirstDot = $name->contains('.') ? $name->after('.')->__toString() : null;
+        $keyAfterLastDot = $name->contains('.') ? $name->afterLast('.')->__toString() : null;
 
         $beforeMethod = 'updating'.$propertyName;
         $afterMethod = 'updated'.$propertyName;
 
-        $beforeNestedMethod = Str::contains($name, '.')
-            ? 'updating'.Str::of($name)->replace('.', '_')->studly()
+        $beforeNestedMethod = $name->contains('.')
+            ? 'updating'.$name->replace('.', '_')->studly()
             : false;
 
-        $afterNestedMethod = Str::contains($name, '.')
-            ? 'updated'.Str::of($name)->replace('.', '_')->studly()
+        $afterNestedMethod = $name->contains('.')
+            ? 'updated'.$name->replace('.', '_')->studly()
             : false;
+
+        $name = $name->__toString();
 
         $this->updating($name, $value);
 
@@ -98,8 +102,10 @@ trait HandlesActions
         Livewire::dispatch('component.updated', $this, $name, $value);
     }
 
-    public function callMethod($method, $params = [])
+    public function callMethod($method, $params = [], $captureReturnValueCallback = null)
     {
+        $method = trim($method);
+
         switch ($method) {
             case '$sync':
                 $prop = array_shift($params);
@@ -115,7 +121,16 @@ trait HandlesActions
 
             case '$toggle':
                 $prop = array_shift($params);
-                $this->syncInput($prop, ! $this->{$prop}, $rehash = false);
+
+                if ($this->containsDots($prop)) {
+                    $propertyName = $this->beforeFirstDot($prop);
+                    $targetKey = $this->afterFirstDot($prop);
+                    $currentValue = data_get($this->{$propertyName}, $targetKey);
+                } else {
+                    $currentValue = $this->{$prop};
+                }
+
+                $this->syncInput($prop, ! $currentValue, $rehash = false);
 
                 return;
 
@@ -133,7 +148,7 @@ trait HandlesActions
 
         $returned = ImplicitlyBoundMethod::call(app(), [$this, $method], $params);
 
-        Livewire::dispatch('action.returned', $this, $method, $returned);
+        $captureReturnValueCallback && $captureReturnValueCallback($returned);
     }
 
     protected function methodIsPublicAndNotDefinedOnBaseClass($methodName)

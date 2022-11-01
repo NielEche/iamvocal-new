@@ -54,8 +54,8 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
         'zh' => 'Han-Latin',
     ];
 
-    private $defaultLocale;
-    private $symbolsMap = [
+    private ?string $defaultLocale;
+    private \Closure|array $symbolsMap = [
         'en' => ['@' => 'at', '&' => 'and'],
     ];
 
@@ -64,9 +64,9 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
      *
      * @var \Transliterator[]
      */
-    private $transliterators = [];
+    private array $transliterators = [];
 
-    public function __construct(string $defaultLocale = null, array $symbolsMap = null)
+    public function __construct(string $defaultLocale = null, array|\Closure $symbolsMap = null)
     {
         $this->defaultLocale = $defaultLocale;
         $this->symbolsMap = $symbolsMap ?? $this->symbolsMap;
@@ -75,7 +75,7 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
     /**
      * {@inheritdoc}
      */
-    public function setLocale($locale)
+    public function setLocale(string $locale)
     {
         $this->defaultLocale = $locale;
     }
@@ -83,7 +83,7 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
     /**
      * {@inheritdoc}
      */
-    public function getLocale()
+    public function getLocale(): string
     {
         return $this->defaultLocale;
     }
@@ -96,18 +96,38 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
         $locale = $locale ?? $this->defaultLocale;
 
         $transliterator = [];
-        if ('de' === $locale || 0 === strpos($locale, 'de_')) {
+        if ($locale && ('de' === $locale || 0 === strpos($locale, 'de_'))) {
             // Use the shortcut for German in UnicodeString::ascii() if possible (faster and no requirement on intl)
             $transliterator = ['de-ASCII'];
         } elseif (\function_exists('transliterator_transliterate') && $locale) {
             $transliterator = (array) $this->createTransliterator($locale);
         }
 
+        if ($this->symbolsMap instanceof \Closure) {
+            // If the symbols map is passed as a closure, there is no need to fallback to the parent locale
+            // as the closure can just provide substitutions for all locales of interest.
+            $symbolsMap = $this->symbolsMap;
+            array_unshift($transliterator, static function ($s) use ($symbolsMap, $locale) {
+                return $symbolsMap($s, $locale);
+            });
+        }
+
         $unicodeString = (new UnicodeString($string))->ascii($transliterator);
 
-        if (isset($this->symbolsMap[$locale])) {
-            foreach ($this->symbolsMap[$locale] as $char => $replace) {
-                $unicodeString = $unicodeString->replace($char, ' '.$replace.' ');
+        if (\is_array($this->symbolsMap)) {
+            $map = null;
+            if (isset($this->symbolsMap[$locale])) {
+                $map = $this->symbolsMap[$locale];
+            } else {
+                $parent = self::getParentLocale($locale);
+                if ($parent && isset($this->symbolsMap[$parent])) {
+                    $map = $this->symbolsMap[$parent];
+                }
+            }
+            if ($map) {
+                foreach ($map as $char => $replace) {
+                    $unicodeString = $unicodeString->replace($char, ' '.$replace.' ');
+                }
             }
         }
 
@@ -129,17 +149,28 @@ class AsciiSlugger implements SluggerInterface, LocaleAwareInterface
         }
 
         // Locale not supported and no parent, fallback to any-latin
-        if (false === $str = strrchr($locale, '_')) {
+        if (!$parent = self::getParentLocale($locale)) {
             return $this->transliterators[$locale] = null;
         }
 
         // Try to use the parent locale (ie. try "de" for "de_AT") and cache both locales
-        $parent = substr($locale, 0, -\strlen($str));
-
         if ($id = self::LOCALE_TO_TRANSLITERATOR_ID[$parent] ?? null) {
             $transliterator = \Transliterator::create($id.'/BGN') ?? \Transliterator::create($id);
         }
 
         return $this->transliterators[$locale] = $this->transliterators[$parent] = $transliterator ?? null;
+    }
+
+    private static function getParentLocale(?string $locale): ?string
+    {
+        if (!$locale) {
+            return null;
+        }
+        if (false === $str = strrchr($locale, '_')) {
+            // no parent locale
+            return null;
+        }
+
+        return substr($locale, 0, -\strlen($str));
     }
 }

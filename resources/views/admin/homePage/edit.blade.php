@@ -33,7 +33,7 @@ Admin Dashboard | Edit Home Header
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>Button Text</label>
+                                <label>Caption</label>
                                 <input type="text" value="{{$homeHeader['button_text']}}" name="button_text" placeholder="{{$homeHeader['button_text']}}"
                                     class="form-control" >
                             </div>

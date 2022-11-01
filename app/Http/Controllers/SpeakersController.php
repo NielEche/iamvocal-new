@@ -96,7 +96,7 @@ class SpeakersController extends Controller
     public function showSpeaker($id)
     {
 
-        $speakers = Speakers::where('event_id', $id)->get(); 
+        $speakers = Speakers::where('event_id', $id)->get();
         return view('admin.speakers.index',compact('speakers'))->with('id', $id);
     }
 

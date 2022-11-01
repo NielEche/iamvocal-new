@@ -45,6 +45,7 @@ class DonationsController extends Controller
             $donations->location = $request->location;
             $donations->caption = $request->caption;
             $donations->url = $request->url;
+            $donations->amount = $request->amount;
 
             $donations->save();
      
@@ -113,6 +114,7 @@ class DonationsController extends Controller
                 'location' => $request['location'],
                 'caption' => $request['caption'],
                 'url' => $request['url'],
+                'amount' => $request['amount'],
             ]);
 
             $donations->save();

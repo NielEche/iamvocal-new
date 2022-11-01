@@ -28,18 +28,32 @@ Admin Dashboard | Home
                 </div>
             </div>
 
+            <div class="container py-4">
+                <div class="pull-right">
+                    <div class="col-xs-12">
+                        <button data-toggle="modal" data-target="#addslider" id="btnStickUpSizeToggler"
+                            class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Add Image
+                        </button>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            
+
             <div class=" container-fluid  container-fixed-lg">
                 <div class="row">
                     <?php if($homeHeader->count() > 0): ?>
                     <?php $__currentLoopData = $homeHeader; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $slider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-md-12 p-0">
+                    <div class="col-md-3 p-0">
                         <div class="card card-transparent m-0">
-                            <div class="card-header ">
+                            <div class="card-header col-lg-12 col-sm-12">
                                 <div class="card-title events">
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
                                                 <img src="<?php echo e(asset('uploads/homepage/')); ?>/<?php echo e($slider->file_path); ?>"
                                                     class="eventsimg w-100" alt="">
+                                                    <p><?php echo e($slider->button_text); ?></p>
                                             </div>
                                         </div>
                                 </div>
@@ -58,11 +72,11 @@ Admin Dashboard | Home
                                                 <button name="edit_event_btn"
                                                     class="btn btn-success"> EDIT <i class="fa fa-pencil"></i></button>
                                             </a>
-                                           <!-- <a class="dropdown-item" href=<?php echo e("deleteheader/".$slider['id']); ?>>
+                                           <a class="dropdown-item" href=<?php echo e("deleteheader/".$slider['id']); ?>>
                                                <button type="submit" name="event_delete_btn"
                                                         class="btn btn-danger">DELETE <i
                                                             class="fa fa-trash-o"></i></button> 
-                                            </a>-->
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -222,6 +236,7 @@ Admin Dashboard | Home
 </div>
 
 <?php echo $__env->make('admin.partials.modals.addaim', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('admin.partials.modals.addslider', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('script'); ?>

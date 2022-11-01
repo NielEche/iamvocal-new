@@ -5,7 +5,7 @@ About Us
 @endsection
 
 @section('content')
-@php( $tedxphteams = \App\Models\tedxphteams::all() )
+@php( $tedxphteams = \App\Models\tedxphteams::orderBy('serial_id', 'asc')->get() )
 @php( $aboutus = \App\Models\AboutUs::orderBy('id', 'asc')->where('id', '1')->get() )
 @php( $approach = \App\Models\AboutUs::orderBy('id', 'asc')->where('id', '2')->get() )
 @php( $mission = \App\Models\AboutUs::orderBy('id', 'asc')->where('id', '3')->get() )

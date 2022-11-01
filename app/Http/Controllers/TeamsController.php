@@ -15,7 +15,7 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        $tedxphteams = tedxphteams::all();
+        $tedxphteams = tedxphteams::orderBy('serial_id', 'asc')->get() ;
         $aboutus = AboutUs::all();
         return view('admin.team.index', compact(['tedxphteams' , 'aboutus']));
     }
@@ -44,6 +44,7 @@ class TeamsController extends Controller
 
             $tedxphteams->name = $request->name;
             $tedxphteams->position = $request->position;
+            $tedxphteams->serial_id = $request->serial_id;
             $tedxphteams->about = $request->about;
 
             if ($request->hasfile('file_path')) {
@@ -134,6 +135,7 @@ class TeamsController extends Controller
               $tedxphteams->update([
                 'name' => $request['name'],
                 'position' => $request['position'],
+                'serial_id' => $request['serial_id'],
                 'about' => $request['about'],
             ]);
             

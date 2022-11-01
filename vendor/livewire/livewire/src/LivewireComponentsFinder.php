@@ -4,7 +4,6 @@ namespace Livewire;
 
 use Exception;
 use ReflectionClass;
-use Illuminate\Support\Str;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -24,7 +23,9 @@ class LivewireComponentsFinder
 
     public function find($alias)
     {
-        return $this->getManifest()[$alias] ?? null;
+        $manifest = $this->getManifest();
+
+        return $manifest[$alias] ?? $manifest["{$alias}.index"] ?? null;
     }
 
     public function getManifest()
@@ -63,13 +64,16 @@ class LivewireComponentsFinder
 
     public function getClassNames()
     {
+        if (! $this->files->exists($this->path)) {
+            return collect();
+        }
+
         return collect($this->files->allFiles($this->path))
             ->map(function (SplFileInfo $file) {
-                return app()->getNamespace().str_replace(
-                    ['/', '.php'],
-                    ['\\', ''],
-                    Str::after($file->getPathname(), app_path().'/')
-                );
+                return app()->getNamespace().
+                    str($file->getPathname())
+                        ->after(app_path().'/')
+                        ->replace(['/', '.php'], ['\\', ''])->__toString();
             })
             ->filter(function (string $class) {
                 return is_subclass_of($class, Component::class) &&

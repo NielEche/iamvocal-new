@@ -12,10 +12,7 @@ Admin Dashboard | Edit Events
             </div>
             <div class="modal-body">
                 <form action="/editSpeaker" method="POST" enctype="multipart/form-data">
-                    
-                
-                
-                    <?php echo csrf_field(); ?>
+                <?php echo csrf_field(); ?>
 
                     <input type="hidden" name="id" value="<?php echo e($speakers['id']); ?>">
 

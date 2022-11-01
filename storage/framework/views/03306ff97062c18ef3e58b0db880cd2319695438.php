@@ -21,10 +21,10 @@
                         <div class="widget_nav_menu">
                             <ul>
                                 <li>
-                                    <a href="mailto:info@iamvocal.com">info@iamvocal.com</a>
+                                    <a href="mailto:info@i-amvocal.org">info@i-amvocal.org</a>
                                 </li>
                                 <li>
-                                    <a href="tel:+2348060935051">+2348060935051</a>
+                                    <a href="tel:+2348188688352">+2348188688352</a>
                                 </li>
                             </ul>
                         </div>
@@ -39,7 +39,7 @@
                                     <?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li>
                                         <button
-                                            style="cursor:pointer; border: 0px !important;  background:none !important;"
+                                            style="cursor:pointer; border: 0px !important;  background:none !important; text-align:left !important;"
                                             class=" nopadding" type="submit">
                                             <a href="<?php echo e(route('subevents', [ $event->id])); ?>" class="text-white"><?php echo e($event->event_name); ?></a>
                                         </button> 
@@ -57,15 +57,15 @@
                         <div class="widget_nav_menu">
                             <ul>
                                 <li>
-                                    <a class="redhover" href="https://twitter.com/tedxphcity" target="_blank"><i
+                                    <a class="redhover" href="https://twitter.com/iamvocalng" target="_blank"><i
                                             class="fa fa-twitter"> </i> Twitter</a>
                                 </li>
                                 <li>
-                                    <a class="redhover" href="https://www.facebook.com/tedxphcity" target="_blank"><i
+                                    <a class="redhover" href="https://www.facebook.com/I_AMVOCAL-1853859038074455/" target="_blank"><i
                                             class="fa fa-facebook"></i> Facebook</a>
                                 </li>
                                 <li>
-                                    <a class="redhover" href="https://www.instagram.com/tedxphcity/" target="_blank"><i
+                                    <a class="redhover" href="https://www.instagram.com/iamvocalng/?hl=en" target="_blank"><i
                                             class="fa fa-instagram"></i> Instagram</a>
                                 </li>
                             </ul>

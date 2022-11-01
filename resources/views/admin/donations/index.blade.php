@@ -62,6 +62,7 @@ Admin Dashboard | Donations
                             <div class="card-body ">
                                 <div class="eventdetails">
                                     <h5 class="m-0">{{ $donation->header }}</h5>
+                                    <p class="m-0">{{ $donation->amount }}</p>
                                     <p class="m-0">{!!$donation->caption !!}</p>
                                 </div>
 
