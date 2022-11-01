@@ -7,7 +7,7 @@
                 <h5>Add <span class="semi-bold">Event Details</span></h5>
             </div>
             <div class="modal-body">
-                <form action="<?php echo e(route('editspeaker.store')); ?>" method="POST" enctype="multipart/form-data"
+                <form action="<?php echo e(route('subevent')); ?>" method="POST" enctype="multipart/form-data"
                     name="events" id="events">
                     <?php echo csrf_field(); ?>
                     <?php echo method_field('POST'); ?>

@@ -147,6 +147,7 @@ Admin Dashboard | Partners
                                 <div class="eventdetails">
                                     <h5 class="m-0"><?php echo e($team->name); ?></h5>
                                     <p class="m-0"><?php echo e($team->position); ?></p>
+                                    <p class="m-0"><?php echo e($team->serial_id); ?></p>
                                 </div>
 
                                 <div style="display: flex;">

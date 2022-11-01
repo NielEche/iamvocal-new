@@ -16,8 +16,8 @@ Contact
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <h5 class="PageActive">Plot 151/160 Ordinance Road, Trans-Amadi</h5>
                         <p class="color--body-alt"> Port Harcourt <br>Nigeria</p>
-                        <p class="color--body-alt">2348060935051</p>
-                        <p><a class="color--body-alt link" href="mailto:info@iamvocal.com">info@iamvocal.com</a></p>
+                        <p class="color--body-alt">+234 8188688352</p>
+                        <p><a class="color--body-alt link" href="mailto:info@i-amvocal.org">info@i-amvocal.org</a></p>
                         <p class="color--body-alt">Mon-Fri: 8:00-19:00</p>
                         
                     </div>

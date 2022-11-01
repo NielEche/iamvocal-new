@@ -206,7 +206,7 @@ Speaker Details
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 py-3 mt-2">
-                            {!! $speakers->flickr !!}
+                            {!! $speakers->flickr !!}<script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
                         </div>
                     </div>
 

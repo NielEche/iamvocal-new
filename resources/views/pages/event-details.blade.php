@@ -7,20 +7,21 @@
 @section('content')
 
 
-<section class="section bg-black mt-5">
-    <div class="container-fluid p-0">
-        <div class="row">
-            @foreach($eventss as $eve)
-            @if ($loop->first)
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center pt-5">
-                <img class="w-100 lazyload--el lazyload in-view__child"
-                src="{{ asset('uploads/events') }}/{{ $eve->file_path }}" alt="{{$eve['event_name']}}"
-                style="height:650px; object-fit:cover;">  
-            </div>
-            @endif
-            @endforeach
+<section class="section section--singular2 video bg-black">
+    <div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
+        <div class="carousel-inner">
+                @foreach($eventss as $data)
+                @if ($loop->first)
+                <div class="carousel-item  {{ $loop->first ? 'active' : '' }}">
+                    <img src="{{ asset('uploads/events') }}/{{ $data->file_path }}" class="d-block w-100" alt="Image">
+                </div>
+                @endif
+                @endforeach
         </div>
     </div>
+</section>
+
+<section class="section bg-black mt-0">
 
     <div class="container bg-black pt-2 pb-3">
         <div class="row">
@@ -31,7 +32,7 @@
                     <h3 class="fw-30">{{$eve['event_name']}}</h3>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-4 text-white">
-                    <p class="fw-20">{{$eve['about']}}</p><br>
+                    <p class="fw-20">{!!$eve['about']!!}</p><br>
                 </div>
                 @endif
                 @endforeach
@@ -45,10 +46,20 @@
     <div class="container bg-black pb-3">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <header class="page-header mb-4">
-                    <h1 class="page-title text-white">EVENTS</h1>
-                </header>
+                @if ($speakers->count())
+                      @foreach ($speakers->take(1) as $item)
+                    @if ($item->name != null)
+                    <header class="page-header mb-4">
+                        <h3 class="fw-30 px-2 page-title text-white">EVENTS</h3>
+                    </header>
+                    @else
+                    <h1></h1>
+                    @endif
+                @endforeach 
+                @endif
+             
                 @foreach($speakers as $index => $speak)
+
                 @php
                 $date = new Carbon;
                 @endphp
@@ -126,9 +137,9 @@
                                             <div class="poster--cover in-view in-view__child"></div>
                                         </a>
                                     </div>
-
                                 </div>
                             </div>
+                            <p class="pt-2 text-white">{{$speak->name}} </p>
                             <div class="speaker-neat__copy in-view pt-2">
                                 @php
                                 $date = new Carbon;

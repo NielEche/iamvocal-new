@@ -95,4 +95,15 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'unicodeveloper/laravel-paystack' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Unicodeveloper\\Paystack\\PaystackServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Paystack' => 'Unicodeveloper\\Paystack\\Facades\\Paystack',
+    ),
+  ),
 );

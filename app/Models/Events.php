@@ -21,4 +21,8 @@ class Events extends Model
         return $this->hasMany('App\speakers','event_id');
 }
 
+public function subevents() {
+    return $this->hasMany('App\subevents','event_id');
+}
+
 }

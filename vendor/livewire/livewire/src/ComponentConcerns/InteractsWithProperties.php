@@ -2,8 +2,8 @@
 
 namespace Livewire\ComponentConcerns;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use function Livewire\str;
 
 trait InteractsWithProperties
 {
@@ -47,7 +47,10 @@ trait InteractsWithProperties
 
     public function getPublicPropertiesDefinedBySubClass()
     {
-        $publicProperties = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PUBLIC);
+        $publicProperties = array_filter((new \ReflectionObject($this))->getProperties(), function ($property) {
+            return $property->isPublic() && ! $property->isStatic();
+        });
+
         $data = [];
 
         foreach ($publicProperties as $property) {
@@ -61,7 +64,7 @@ trait InteractsWithProperties
 
     public function getProtectedOrPrivatePropertiesDefinedBySubClass()
     {
-        $properties = (new \ReflectionClass($this))->getProperties(\ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PRIVATE);
+        $properties = (new \ReflectionObject($this))->getProperties(\ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PRIVATE);
         $data = [];
 
         foreach ($properties as $property) {
@@ -118,14 +121,14 @@ trait InteractsWithProperties
         return head(explode('.', $subject));
     }
 
-    public function afterFirstDot($subject)
+    public function afterFirstDot($subject) : string
     {
-        return Str::after($subject, '.');
+        return str($subject)->after('.');
     }
 
     public function propertyIsPublicAndNotDefinedOnBaseClass($propertyName)
     {
-        return collect((new \ReflectionClass($this))->getProperties(\ReflectionMethod::IS_PUBLIC))
+        return collect((new \ReflectionObject($this))->getProperties(\ReflectionMethod::IS_PUBLIC))
             ->reject(function ($property) {
                 return $property->class === self::class;
             })
@@ -142,8 +145,8 @@ trait InteractsWithProperties
         }
 
         foreach ($values as $key => $value) {
-            if (in_array($key, $publicProperties)) {
-                $this->{$key} = $value;
+            if (in_array($this->beforeFirstDot($key), $publicProperties)) {
+                data_set($this, $key, $value);
             }
         }
     }
@@ -168,6 +171,16 @@ trait InteractsWithProperties
             $this->{$property} = $freshInstance->{$property};
         }
     }
+    
+    protected function resetExcept(...$properties)
+    {
+        if (count($properties) && is_array($properties[0])) {
+            $properties = $properties[0];
+        }
+
+        $keysToReset = array_diff(array_keys($this->getPublicPropertiesDefinedBySubClass()), $properties);
+        $this->reset($keysToReset);
+    }
 
     public function only($properties)
     {
@@ -178,5 +191,15 @@ trait InteractsWithProperties
         }
 
         return $results;
+    }
+    
+    public function except($properties)
+    {
+        return array_diff_key($this->all(), array_flip($properties));
+    }
+
+    public function all()
+    {
+       return $this->getPublicPropertiesDefinedBySubClass();
     }
 }

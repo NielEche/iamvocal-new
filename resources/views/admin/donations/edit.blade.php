@@ -53,6 +53,16 @@ Admin Dashboard | Edit Donation
 
                     <div class="row">
                         <div class="col-md-12">
+                            <div class="form-group form-group-default">
+                                <label>Amount</label>
+                                <input type="number" value="{{$donations['amount']}}" name="amount" placeholder=""
+                                    class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="form-group ">
                                 <label>About</label>
                                 <textarea id="editor" rows="10" type="text" value="" name="caption" placeholder="Request details"
@@ -64,8 +74,8 @@ Admin Dashboard | Edit Donation
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
-                                <label>Donation link</label>
-                                <input type="text" value="{{$donations['url']}}" name="url"   
+                              {{--   <label>Donation link</label> --}}
+                                <input class="hidden" type="text" value="{{$donations['url']}}" name="url"   
                                     class="form-control" required>
                             </div>
                         </div>
@@ -76,7 +86,7 @@ Admin Dashboard | Edit Donation
                         </div>
                         <div class="col-md-4 m-t-10">
                             <button value="submit"
-                                class="btn btn-primary btn-block m-t-5"> <a class="text-white" href="{{ route('career.index') }}">Cancel</a></button>
+                                class="btn btn-primary btn-block m-t-5"> <a class="text-white" href="{{ route('donations.index') }}">Cancel</a></button>
                         </div>
                         <div class="col-md-4 m-t-10 sm-m-t-10">
                             <button type="submit" name="submit" id="submit" value="submit"

@@ -5,20 +5,21 @@
 <?php $__env->startSection('content'); ?>
 
 
-<section class="section bg-black mt-5">
-    <div class="container-fluid p-0">
-        <div class="row">
-            <?php $__currentLoopData = $eventss; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eve): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <?php if($loop->first): ?>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 d-flex justify-content-center pt-5">
-                <img class="w-100 lazyload--el lazyload in-view__child"
-                src="<?php echo e(asset('uploads/events')); ?>/<?php echo e($eve->file_path); ?>" alt="<?php echo e($eve['event_name']); ?>"
-                style="height:650px; object-fit:cover;">  
-            </div>
-            <?php endif; ?>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+<section class="section section--singular2 video bg-black">
+    <div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
+        <div class="carousel-inner">
+                <?php $__currentLoopData = $eventss; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if($loop->first): ?>
+                <div class="carousel-item  <?php echo e($loop->first ? 'active' : ''); ?>">
+                    <img src="<?php echo e(asset('uploads/events')); ?>/<?php echo e($data->file_path); ?>" class="d-block w-100" alt="Image">
+                </div>
+                <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
+</section>
+
+<section class="section bg-black mt-0">
 
     <div class="container bg-black pt-2 pb-3">
         <div class="row">
@@ -29,7 +30,7 @@
                     <h3 class="fw-30"><?php echo e($eve['event_name']); ?></h3>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-4 text-white">
-                    <p class="fw-20"><?php echo e($eve['about']); ?></p><br>
+                    <p class="fw-20"><?php echo $eve['about']; ?></p><br>
                 </div>
                 <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -43,10 +44,20 @@
     <div class="container bg-black pb-3">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <header class="page-header mb-4">
-                    <h1 class="page-title text-white">EVENTS</h1>
-                </header>
+                <?php if($speakers->count()): ?>
+                      <?php $__currentLoopData = $speakers->take(1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($item->name != null): ?>
+                    <header class="page-header mb-4">
+                        <h3 class="fw-30 px-2 page-title text-white">EVENTS</h3>
+                    </header>
+                    <?php else: ?>
+                    <h1></h1>
+                    <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+                <?php endif; ?>
+             
                 <?php $__currentLoopData = $speakers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $speak): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
                 <?php
                 $date = new Carbon;
                 ?>
@@ -126,9 +137,9 @@
                                             <div class="poster--cover in-view in-view__child"></div>
                                         </a>
                                     </div>
-
                                 </div>
                             </div>
+                            <p class="pt-2 text-white"><?php echo e($speak->name); ?> </p>
                             <div class="speaker-neat__copy in-view pt-2">
                                 <?php
                                 $date = new Carbon;

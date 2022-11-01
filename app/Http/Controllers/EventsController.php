@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Events;
+use App\Models\Subevents;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
@@ -55,6 +56,52 @@ class EventsController extends Controller
             }
 
             $events->save();
+     
+            return redirect('events')->with('message', 'Program Added Succesfully!');
+            
+
+        } catch (\Throwable $th) {
+    
+            //throw $th;
+            $response = [
+              'success' => false,
+              'message' => "OOPS! Something fucking wennt wrong"
+            ];
+            return response()->json($response, 422);
+        }
+ 
+    
+    }
+
+    public function store2(Request $request)
+    {
+        try {
+            //code...
+            $subevents = new Subevents();
+
+            $subevents->name = $request->name;
+            $subevents->date = $request->date;
+            $subevents->venue = $request->venue;
+            $subevents->time = $request->time;
+            $subevents->event_id = $request->event_id;
+            $subevents->bio = $request->bio;
+            $subevents->flickr = $request->flickr;
+            $subevents->embed = $request->embed;
+            $subevents->register = $request->register;
+
+            if ($request->hasfile('file_path')) {
+                $file = $request->file('file_path');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '.' . $extension;
+                $file->move('uploads/events/', $filename);
+                $subevents->file_path = $filename;
+            } else {
+                return $request;
+                $subevents->file_path = '';
+            }
+
+
+            $subevents->save();
      
             return redirect('events')->with('message', 'Program Added Succesfully!');
             

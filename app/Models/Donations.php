@@ -11,6 +11,8 @@ class Donations extends Model
     protected $fillable = [
         'date',
         'caption',
+        'header',
         'url',
+        'amount',
     ];
 }

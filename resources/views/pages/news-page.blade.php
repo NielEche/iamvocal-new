@@ -14,6 +14,7 @@ News
                 <div class="text-white text-center pt-5">
                     <h5 class="fw-12 PageActive">NEWS & ARCHIVES</h5>
                     <h1 class="fw-48 py-1">{{$news['title']}}</h1>
+                    
                     <h6>{{ \Carbon\Carbon::parse($news->date)->format('M d Y')}}</h6>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 px-0 pt-5">

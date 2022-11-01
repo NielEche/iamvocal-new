@@ -8,6 +8,22 @@
                 <h5>Add <span class="semi-bold">Event Details</span></h5>
             </div>
             <div class="modal-body">
+
+
+                <form action="<?php echo e(route('events.store')); ?>" method="POST" enctype="multipart/form-data" name="speakers"
+                id="speakers">
+                <?php echo csrf_field(); ?>
+                <?php echo method_field('POST'); ?>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
                 <form action="<?php echo e(route('events.store')); ?>" method="POST" enctype="multipart/form-data"
                     name="events" id="events">
                     <?php echo csrf_field(); ?>

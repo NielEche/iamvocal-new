@@ -15,6 +15,7 @@ use App\Http\Controllers\CareersController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsDetailsController;
 use App\Http\Controllers\DonationsController;
+use App\Http\Controllers\PaymentController;
 use App\Models\User;
 
 /*
@@ -41,8 +42,9 @@ Route::group([
         'newsdetails' => NewsDetailsController::class,    
         'aboutevent' => TeamsController::class, 
         'eventgallery' => MediaController::class,
-        'editspeaker' => SpeakersController::class,
+        'editspeakers' => SpeakersController::class,
         'homeHeader' => HomeHeaderController::class,
+        'homeAbout' => HomeAboutController::class,
         'career' => CareersController::class, 
         'donations' => DonationsController::class,    
         ]);
@@ -54,8 +56,12 @@ Route::group([
 Route::redirect('/register', '/none');
 Route::redirect('/dashboard', '/liquidbox');
 
+Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
+Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
+
 Route::get('edit/{id}', [EventsController::class, 'showData']);
 Route::get('allspeakers/{id}', [SpeakersController::class, 'showSpeaker']);
+Route::post('/subevent',[SpeakersController::class, 'store'])->name('subevent');
 Route::get('ourevents/{id}', [SpeakersController::class, 'showall'])->name('subevents');
 
 Route::get('viewCareer/{id}', [CareersController::class, 'showall']);
@@ -63,7 +69,7 @@ Route::get('viewCareer/{id}', [CareersController::class, 'showall']);
 Route::get('ourevents/showEvent/{id}', [SpeakersController::class, 'displaySpeakers']);
 Route::get('ourevents/showEvent/{id}', [SpeakersController::class, 'displayNow'])->name('allevents');
 Route::get('showSpeakerss/{id}', [SpeakersController::class, 'displayNoww']);
-
+ 
 Route::post('editevent', [EventsController::class, 'update']);
 Route::get('delete/{id}',[EventsController::class, 'destroy']);
 

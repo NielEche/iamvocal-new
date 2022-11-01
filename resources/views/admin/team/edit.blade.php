@@ -43,6 +43,16 @@ Admin Dashboard | Edit Team
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
+                                <label>Serial Id</label>
+                                <input type="text" value="{{$teams['serial_id']}}" name="serial_id" placeholder="serial_id"
+                                    class="form-control" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-group-default">
                                 <label>Role</label>
                                 <input type="text" value="{{$teams['position']}}" name="position" placeholder="role" class="form-control"
                                     >

@@ -82,7 +82,7 @@ Media
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="team-members pt-5">
+                <div class="team-members pt-5" id="newss">
                     <div class="in-view in-view--in text-white py-4">
                         <h2 class="fw-26 ">iamvocal | news & archives</h2>
                         <p class="col-lg-5 px-0  fw-14 lh-1-5">We are a community of people who have decided to let
@@ -121,6 +121,17 @@ Media
         </div>
     </div>
 </section>
+
+<section class="bg-white pb-2">
+    <div class="container py-5">
+        <div class="">
+            <div class="in-view in-view--in py-4">
+                <h1 class="page-title page-title2 PageActive">Image Gallery</h1>
+            </div>
+        </div>
+        <a data-flickr-embed="true" href="https://www.flickr.com/photos/187281060@N06" title=""><img src="https://live.staticflickr.com/65535/51228133062_fb20099760_z.jpg" width="100%" height="480" alt=""></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+    </div>
+    </section>
 
 
 <script type="text/javascript">

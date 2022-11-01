@@ -14,10 +14,7 @@ Admin Dashboard | Edit Events
             </div>
             <div class="modal-body">
                 <form action="/editSpeaker" method="POST" enctype="multipart/form-data">
-                    
-                {{-- </form> --}}
-                {{-- <form action="{{ route('speakers.update')}}" method="POST" enctype="multipart/form-data" name="speakers" id="speakers"> --}}
-                    @csrf
+                @csrf
 
                     <input type="hidden" name="id" value="{{$speakers['id']}}">
 

@@ -7,7 +7,7 @@
                 <h5>Add <span class="semi-bold">Event Details</span></h5>
             </div>
             <div class="modal-body">
-                <form action="{{ route('editspeaker.store') }}" method="POST" enctype="multipart/form-data"
+                <form action="{{ route('subevent') }}" method="POST" enctype="multipart/form-data"
                     name="events" id="events">
                     @csrf
                     @method('POST')

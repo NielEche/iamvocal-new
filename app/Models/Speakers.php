@@ -23,6 +23,6 @@ class Speakers extends Model
     
 
     public function events() {
-        return $this->belongsTo('App\events', 'event_id', 'id');
+        return $this->belongsTo('App\events', 'id');
     }
 }

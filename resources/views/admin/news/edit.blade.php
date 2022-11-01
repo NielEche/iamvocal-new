@@ -55,7 +55,7 @@ Admin Dashboard | Edit News
                         <div class="col-md-12">
                             <div class="form-group form-group-default">
                                 <label>Date</label>
-                                <input type="text" value="{{$news['date']}}" name="date" placeholder="date"
+                                <input type="date" value="{{$news['date']}}" name="date" placeholder="date"
                                     class="form-control" >
                             </div>
                         </div>
